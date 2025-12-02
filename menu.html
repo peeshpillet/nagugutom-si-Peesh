@@ -45,7 +45,8 @@
     <div id="side-cart" class="side-cart d-flex flex-column">
         <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
             <h5>Your Order</h5>
-            <button id="close-cart" class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></button>
+            <!-- Close Button with Bootstrap sizing + custom class -->
+            <button id="close-cart" class="btn btn-sm side-cart-btn"><i class="fa-solid fa-xmark"></i></button>
         </div>
     
         <!-- Scrollable cart content -->
@@ -87,9 +88,12 @@
     
         <div class="p-3 border-top">
             <p class="fw-bold">Total: ₱<span id="cart-total">0</span></p>
-            <button class="btn btn-success w-100">Checkout</button>
+            <!-- Checkout Button with Bootstrap width + custom class -->
+            <button class="btn side-cart-btn w-100">Checkout</button>
         </div>
     </div>
+    
+    
     
     
 
@@ -110,7 +114,7 @@
                 <!-- Shoyu Ramen -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu1.jpg" class="card-img-top" alt="Shoyu Ramen">
+                        <img src="img/menu img/shoyu3.jpg" class="card-img-top" alt="Shoyu Ramen">
                         <div class="card-body">
                             <h5 class="card-title">Shoyu Ramen</h5>
                             <p class="card-text">soy sauce - chashu pork - beansprouts - leeks - egg</p>
@@ -126,7 +130,7 @@
                 <!-- Tonkotsu Ramen -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu7.jpg" class="card-img-top" alt="Tonkotsu Ramen">
+                        <img src="img/menu img/tonkotsu2.jpg" class="card-img-top" alt="Tonkotsu Ramen">
                         <div class="card-body">
                             <h5 class="card-title">Tonkotsu Ramen</h5>
                             <p class="card-text">chashu pork - black fungus - spring onions - leeks - egg</p>
@@ -142,7 +146,7 @@
                 <!-- Miso Ramen -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu7.jpg" class="card-img-top" alt="Miso Ramen">
+                        <img src="img/menu img/miso2.jpg" class="card-img-top" alt="Miso Ramen">
                         <div class="card-body">
                             <h5 class="card-title">Miso Ramen</h5>
                             <p class="card-text">miso - chashu pork - wakame seaweed - spring onion - egg</p>
@@ -158,7 +162,7 @@
                 <!-- Tantanmen Ramen -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu7.jpg" class="card-img-top" alt="Tantanmen Ramen">
+                        <img src="img/menu img/shoyu2.jpg" class="card-img-top" alt="Tantanmen Ramen">
                         <div class="card-body">
                             <h5 class="card-title">Tantanmen Ramen</h5>
                             <p class="card-text">spicy - chashu pork - beansprouts - seaweed strips- sesame seeds - egg
@@ -175,7 +179,7 @@
                 <!-- Chicken Butter -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu5.jpg" class="card-img-top" alt="Chicken Butter">
+                        <img src="img/menu img/chicken butter.jpg" class="card-img-top" alt="Chicken Butter">
                         <div class="card-body">
                             <h5 class="card-title">Chicken Butter</h5>
                             <p class="card-text">chicken fillet - butter - seaweed strips - spring onion - egg</p>
@@ -191,7 +195,7 @@
                 <!-- Black Garlic Ramen -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu7.jpg" class="card-img-top" alt="Black Garlic Ramen">
+                        <img src="img/menu img/black garlic2.jpg" class="card-img-top" alt="Black Garlic Ramen">
                         <div class="card-body">
                             <h5 class="card-title">Black Garlic Ramen</h5>
                             <p class="card-text">black garlic - chashu pork - wakame - seaweed - kikurage - egg</p>
@@ -207,7 +211,7 @@
                 <!-- Red Ramen -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu7.jpg" class="card-img-top" alt="Red Ramen">
+                        <img src="img/menu img/red ramen.jpg" class="card-img-top" alt="Red Ramen">
                         <div class="card-body">
                             <h5 class="card-title">Red Ramen</h5>
                             <p class="card-text">spicy meatball - kikurage - spring onion - seaweed strips - chashu pork
@@ -234,7 +238,7 @@
                 <!-- Gyoza -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu5.jpg" class="card-img-top" alt="Gyoza">
+                        <img src="img/menu img/gyoza.jpg" class="card-img-top" alt="Gyoza">
                         <div class="card-body">
                             <h5 class="card-title">Gyoza</h5>
                             <p class="card-text">Pan-fried dumplings</p>
@@ -250,7 +254,7 @@
                 <!-- Chicken Karaage -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu6.jpg" class="card-img-top" alt="Chicken Karaage">
+                        <img src="img/menu img/kaarage.jpg" class="card-img-top" alt="Chicken Karaage">
                         <div class="card-body">
                             <h5 class="card-title">Chicken Karaage</h5>
                             <p class="card-text">Crispy Japanese fried chicken</p>
@@ -266,7 +270,7 @@
                 <!-- Teriyaki Tofu -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu7.jpg" class="card-img-top" alt="Teriyaki Tofu">
+                        <img src="img/menu img/teriyaki tofu.jpg" class="card-img-top" alt="Teriyaki Tofu">
                         <div class="card-body">
                             <h5 class="card-title">Teriyaki Tofu</h5>
                             <p class="card-text">Grilled tofu with teriyaki sauce</p>
@@ -282,7 +286,7 @@
                 <!-- Garlic Butter Tofu -->
                 <div class="col-md-3">
                     <div class="card h-100 text-center menu-card">
-                        <img src="img/menu7.jpg" class="card-img-top" alt="Garlic Butter Tofu">
+                        <img src="img/menu img/garlic butter tofu.jpg" class="card-img-top" alt="Garlic Butter Tofu">
                         <div class="card-body">
                             <h5 class="card-title">Garlic Butter Tofu</h5>
                             <p class="card-text">Grilled tofu with garlic butter sauce</p>

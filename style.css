@@ -4,6 +4,25 @@ body {
     font-family: 'Roboto Slab', serif;
 }
 
+/* Global button styles */
+button,
+a.btn,
+input[type="button"],
+input[type="submit"] {
+    background-color: #8E1616 !important;
+    color: #EEEEEE !important;
+    border: none !important;
+    padding: 8px 15px !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    text-align: center !important;
+}
+
 /* FOOTER */
 footer {
     background: #1D1616;
@@ -42,7 +61,7 @@ nav {
 /* INDEX PAGE STYLES*/
 /* HERO SECTION */
 .hero {
-    background-image: url('img/ramen.jpg');
+    background-image: url('img/index img/ramen.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -67,7 +86,7 @@ nav {
 
 /* ABOUT SECTION */
 .about-section {
-    background-color: #D84040;  
+    background-color: #8E1616;  
     padding: 80px 20px;         
 }
 
@@ -223,7 +242,6 @@ nav {
 
 .menu-card .card-body {
     padding: 8px 10px;
-    /* a bit more padding to fill space */
 }
 
 .menu-card .card-title {
@@ -322,6 +340,18 @@ nav {
     transition: right 0.3s ease;
     display: flex;
     flex-direction: column;
+}
+
+.side-cart-btn {
+    background-color: #8E1616;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .side-cart.open {
