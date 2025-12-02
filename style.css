@@ -1,0 +1,354 @@
+/* GENERAL STYLES */
+body {
+    margin: 0;
+    font-family: 'Roboto Slab', serif;
+}
+
+/* FOOTER */
+footer {
+    background: #1D1616;
+    color: #fff;
+    padding: 30px 0;
+}
+
+/* NAVBAR */
+nav {
+    background-color: #1D1616;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+}
+
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+
+/* INDEX PAGE STYLES*/
+/* HERO SECTION */
+.hero {
+    background-image: url('img/ramen.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    color: white;
+    text-align: center;
+    padding: 150px 20px;
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;
+}
+
+/* ABOUT SECTION */
+.about-section {
+    background-color: #D84040;  
+    padding: 80px 20px;         
+}
+
+.about-section h1, h2, h3, h4, h5 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #EEEEEE;
+}
+
+.business-hours li {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #EEEEEE;
+    margin-bottom: 8px;
+}
+
+.about-section .about-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #EEEEEE;
+}
+
+.about-section .ratio {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* FEATURED MENU SECTION */
+.featured-menu {
+    background-color: #EEEEEE;
+    padding: 80px 20px;
+}
+
+.featured-menu h2 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #8E1616;
+}
+
+.featured-menu .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-menu .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.featured-menu .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.featured-menu .card-title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    color: #8E1616;
+    margin-bottom: 10px;
+}
+
+.featured-menu .card-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1rem;
+    color: #8E1616;
+    margin-bottom: 15px;
+}
+
+.featured-menu .btn-warning {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 20px;
+}
+
+/* ===========================END OF INDEX PAGE STYLES=================*/
+/* ===========================MENU PAGE STYLESS=================*/
+/* RAMEN SECTION */
+.ramen-section {
+    background-color: #8E1616;
+    padding: 80px 20px;
+}
+
+.ramen-section h1{
+    color: #EEEEEE;
+}
+
+.ramen-section .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #EEEEEE;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.ramen-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.ramen-section .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.ramen-section .card-title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    color: #1D1616;
+    margin-bottom: 10px;
+}
+
+.ramen-section .card-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.ramen-section .btn-warning {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 20px;
+}
+
+/* --- Smaller Menu Cards --- */
+.menu-card {
+    width: 200px;
+    /* narrower card */
+    max-height: 350px;
+    /* taller card */
+    margin: 0 auto 20px;
+    /* center and add spacing below */
+    overflow: hidden;
+}
+
+.menu-card img {
+    height: 150px;
+    /* taller image */
+    object-fit: cover;
+}
+
+.menu-card .card-body {
+    padding: 8px 10px;
+    /* a bit more padding to fill space */
+}
+
+.menu-card .card-title {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.menu-card .card-text {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.menu-card p.fw-bold {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.menu-card button {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+}
+
+/* APPS / SIDES SECTION */
+.apps-section {
+    background-color: #EEEEEE;
+    padding: 80px 20px;
+}
+
+.apps-section h1 {
+    color: #8E1616;
+    text-align: left;
+    margin-bottom: 40px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+}
+
+/* Cards */
+.apps-section .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #EEEEEE;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+.apps-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.apps-section .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+.apps-section .card-title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    color: #3D1A1A;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.apps-section .card-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.85rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.apps-section p.fw-bold {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.apps-section .btn-warning {
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 6px 15px;
+}
+
+/* SIDE CART */
+.side-cart {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 350px;
+    height: 100vh;
+    background: #fff;
+    z-index: 9999;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-cart.open {
+    right: 0;
+}
+
+.cart-content {
+    max-height: calc(100vh - 160px);
+    /* adjusts for header + footer */
+}
+
+#cart-toggle {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    z-index: 1060;
+}
+
+.page-header {
+    background-image: url('img/pgheader.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+
+
