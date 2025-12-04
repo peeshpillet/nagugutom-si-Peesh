@@ -2,6 +2,8 @@
 body {
     margin: 0;
     font-family: 'Roboto Slab', serif;
+    background-color: #8E1616;
+
 }
 
 /* Global button styles */
@@ -84,43 +86,9 @@ nav {
     font-weight: bold;
 }
 
-/* ABOUT SECTION */
-.about-section {
-    background-color: #8E1616;  
-    padding: 80px 20px;         
-}
-
-.about-section h1, h2, h3, h4, h5 {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #EEEEEE;
-}
-
-.business-hours li {
-    font-family: 'Roboto Slab', serif;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #EEEEEE;
-    margin-bottom: 8px;
-}
-
-.about-section .about-text {
-    font-family: 'Roboto Slab', serif;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #EEEEEE;
-}
-
-.about-section .ratio {
-    border-radius: 12px;
-    overflow: hidden;
-}
-
 /* FEATURED MENU SECTION */
 .featured-menu {
-    background-color: #EEEEEE;
+    background-color: #8E1616;
     padding: 80px 20px;
 }
 
@@ -128,7 +96,8 @@ nav {
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 2.5rem;
-    color: #8E1616;
+    text-align: left;
+    color: #EEEEEE;
 }
 
 .featured-menu .card {
@@ -168,6 +137,87 @@ nav {
     font-size: 0.95rem;
     padding: 8px 20px;
 }
+
+/* ================== GALLERY + VISIT US SECTION ================== */
+.gallery {
+    padding: 80px 20px;
+}
+
+.gallery h2 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 2.3rem;
+    color: #8E1616;
+    margin-bottom: 30px;
+}
+
+/* Gallery images */
+.gallery .gallery-images .gallery-img {
+    width: 100%;
+    height: 250px;
+    /* taller images */
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Visit Us card */
+.gallery .visit-us {
+    background-color: #f8f4f4;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.gallery .visit-us h3 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #8E1616;
+    margin-bottom: 15px;
+}
+
+.gallery .visit-us ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.gallery .visit-us ul li {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.gallery .visit-us ul li i {
+    color: #8E1616;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+
+/* MINI LINKSECTION */
+.mini-link{
+    background-color: #8E1616;
+    color: #EEEEEE;
+}
+.mini-link-card {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color:#8E1616 ;
+    font-weight: bold;
+}
+
+.mini-link-card i{
+    color: #8E1616;
+}
+
+.mini-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
 
 /* ===========================END OF INDEX PAGE STYLES=================*/
 /* ===========================MENU PAGE STYLESS=================*/
@@ -379,6 +429,107 @@ nav {
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
+/* ===========================END OF MENU PAGE STYLES=================*/
+/* ===========================ABOUT US PAGE STYLES=================*/
+.about-page {
+    padding: 80px 20px;
+    background-color: #8E1616;
+}
 
+.about-tupperware{
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    padding: 50px 30px;
+}
 
+.about-page h2 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 2.3rem;
+    color: #3D1A1A;
+}
+
+.about-page p {
+    font-family: 'Roboto Slab', serif;
+    font-size: 26px;
+    color: #333;
+    line-height: 1.7;
+}
+
+/* Video Embed */
+.about-page .ratio {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================END OF ABOUT US PAGE STYLES=================*/
+/* ===========================CHECKOUT STYLES=================*/
+
+.page-header {
+    width: 100%;
+    height: 250px;
+    background-image: url('img/checkout menu.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+.checkout h2,
+.checkout h4 {
+    font-family: 'Roboto Slab', serif;
+    color: #3D1A1A;
+}
+
+.checkout .card {
+    border-radius: 12px;
+}
+
+.checkout .form-label {
+    font-weight: 600;
+    color: #3D1A1A;
+}
+
+.checkout .list-group-item {
+    font-size: 1rem;
+}
+
+.checkout .btn-warning {
+    font-size: 1.1rem;
+    padding: 12px;
+}
+
+/* ===========================END OF CHECKOUT PAGE STYLES=================*/
+
+/* TRACK ORDER PAGE */
+.track-header {
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+}
+
+.track-card {
+    border-radius: 12px;
+}
+
+.order-status li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.order-status li.status.completed i {
+    color: #FFC107;
+}
+
+.order-status li.status.current {
+    font-weight: 600;
+}
+
+.order-status li.status.upcoming i {
+    color: #ccc;
+}
+}
+/* ===========================END OF ORDER TRACKING STYLES=================*/
 
