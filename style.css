@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Roboto Slab', serif;
-    background-color: #8E1616;
+
 
 }
 
@@ -430,14 +430,20 @@ nav {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 /* ===========================END OF MENU PAGE STYLES=================*/
-/* ===========================ABOUT US PAGE STYLES=================*/
+
+/* ================== ABOUT US PAGE ================== */
 .about-page {
-    padding: 80px 20px;
     background-color: #8E1616;
+    /* red background across entire page */
+    color: #fff;
+    /* default text white for readability */
+    padding: 80px 20px;
 }
 
-.about-tupperware{
+.about-tupperware {
     background-color: #EEEEEE;
+    /* container light for contrast */
+    color: #8E1616;
     border-radius: 20px;
     padding: 50px 30px;
 }
@@ -451,16 +457,74 @@ nav {
 
 .about-page p {
     font-family: 'Roboto Slab', serif;
-    font-size: 26px;
-    color: #333;
+    font-size: 1.1rem;
     line-height: 1.7;
 }
 
-/* Video Embed */
-.about-page .ratio {
+/* Why Choose Us */
+.why-choose-us h2 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    background-color: #fff;
+}
+
+.why-choose-us h5 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    color: #fff;
+}
+
+.why-choose-us p {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+/* Icons */
+.why-choose-us .fa-3x {
+    color: #ffc107;
+}
+
+/* Video Carousel */
+.ramen-reels h2 {
+    color: #fff;
+}
+
+#ramenReelsCarousel .carousel-item video {
     border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-indicators button {
+    background-color: #ffc107;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #ffc107;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .about-page h2 {
+        font-size: 2rem;
+    }
+
+    .about-page p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-page {
+        padding: 50px 15px;
+    }
+
+    .why-choose-us .fa-3x {
+        font-size: 2rem;
+    }
 }
 
 /* ===========================END OF ABOUT US PAGE STYLES=================*/
@@ -501,35 +565,160 @@ nav {
 
 /* ===========================END OF CHECKOUT PAGE STYLES=================*/
 
-/* TRACK ORDER PAGE */
-.track-header {
-    background-size: cover;
-    background-position: center;
-    border-radius: 12px;
+/* ===========================TRACK ORDER PAGE=================*/
+
+/* Page background */
+.track-order-page {
+    background-color: #8E1616;
+    min-height: 100vh;
+    padding-bottom: 40px;
 }
 
-.track-card {
-    border-radius: 12px;
-}
-
-.order-status li {
-    padding: 10px 0;
+/* Track Order Header - Gradient + Image + Overlay */
+.tracking-header {
+    position: relative;
+    height: 300px;
     display: flex;
     align-items: center;
-    font-weight: 500;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+
+    background:
+        linear-gradient(180deg,
+            rgba(29, 22, 22, 0.8),
+            rgba(178, 34, 34, 0.6),
+            #8E1616),
+        url('img/ramen.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.order-status li.status.completed i {
-    color: #FFC107;
+/* Optional overlay for extra dimming */
+.tracking-header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
-.order-status li.status.current {
-    font-weight: 600;
+/* Header content above overlay */
+.tracking-header .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
 }
 
-.order-status li.status.upcoming i {
-    color: #ccc;
+/* Unified Tracking Card */
+.tracking-card {
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+    padding: 30px;
 }
+
+/* Search Input & Button Stretch */
+.tracking-input {
+    flex: 1;
+    min-width: 200px;
 }
-/* ===========================END OF ORDER TRACKING STYLES=================*/
+
+.tracking-btn {
+    min-width: 140px;
+}
+
+/* Modern Progress Bar */
+.modern-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width: 100%;
+}
+
+/* Step circle */
+.modern-progress .step {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+/* Step icon style */
+.modern-progress .step .icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0 auto 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+/* Active step icon */
+.modern-progress .step.active .icon {
+    background-color: #ffc107;
+    color: #8E1616;
+}
+
+/* Step label */
+.modern-progress .step p {
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Connecting line */
+.modern-progress .line {
+    height: 6px;
+    background-color: #ccc;
+    flex-grow: 1;
+    position: relative;
+    top: 20px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* Active line */
+.modern-progress .line.active {
+    background-color: #ffc107;
+}
+
+/* Detail Boxes */
+.detail-box {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+    transition: 0.3s;
+}
+
+.detail-box:hover {
+    background-color: rgba(255, 193, 7, 0.05);
+}
+
+.detail-box i {
+    color: #ffc107;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .modern-progress {
+        flex-direction: column;
+    }
+
+    .modern-progress .line {
+        width: 4px;
+        height: 50px;
+        top: 0;
+    }
+}
 
