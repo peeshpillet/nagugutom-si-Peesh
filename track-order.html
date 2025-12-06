@@ -22,27 +22,30 @@
 <body style="font-family: 'Roboto Slab', serif;">
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
+            <a class="navbar-brand" href="#">
                 <img src="img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle">
                 Ramen Naijiro
             </a>
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-                <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
-                <li class="nav-item"><a class="nav-link active" href="track.html">Track Order</a></li>
+                <li class="nav-item"><a class="nav-link active" href="track-order.html">Track Order</a></li>
+                <li class="nav-item ms-3">
+                    <button class="btn btn-warning"><i class="fa-solid fa-bag-shopping me-1"></i> Order Now</button>
+                </li>
             </ul>
         </div>
-    </nav>
+        </nav>
 
     <!-- HEADER -->
     <section
         class="tracking-header position-relative text-center text-white d-flex align-items-center justify-content-center">
         <div class="overlay"></div>
         <div class="content">
-            <h1 class="fw-bold display-4">Track Your Order</h1>
+            <h1 class="display-4">Track Your Order</h1>
             <p class="lead">Fresh ramen is on its way — check your delivery status below.</p>
         </div>
     </section>
@@ -101,9 +104,10 @@
                 <div class="detail-box p-3 border rounded">
                     <p class="mb-2"><i class="fa-solid fa-hashtag text-warning me-2"></i><strong>Order ID:</strong> RN-48291
                     </p>
+                    <p class="mb-2"><i class="fa-regular fa-calendar"></i><strong> Date and Time</strong> miaoumiaou</p>
                     <p class="mb-2"><i class="fa-solid fa-clock text-warning me-2"></i><strong>ETA:</strong> 45 minutes</p>
-                    <p class="mb-2"><i class="fa-solid fa-list text-warning me-2"></i><strong>Items Ordered:</strong></p>
-                    <ul class="mb-2 ps-3">
+                    <p class="mb-2"><i class="fa-solid fa-list text-warning me-2"></i><strong>Receipt:</strong></p>
+                    <ul class=" receipt mb-2 ps-3">
                         <li>Tonkotsu Ramen - ₱180</li>
                         <li>Gyoza - ₱120</li>
                         <li>Matcha Latte - ₱67</li>
@@ -117,12 +121,14 @@
     
 
     <!-- FOOTER -->
-    <footer class="bg-dark text-white py-4 mt-auto text-center">
-        <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
-        <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning fs-4"><i
-                class="fa-brands fa-facebook"></i></a><br>
-        <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-white-50 small">Admin login</a>
-    </footer>
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
+            <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none"><i
+                    class="fa-brands fa-facebook"></i></a><br>
+            <a href="https://www.facebook.com/RamenNaijiroGTC">Admin login</a>
+        </div>
+        </footer>
 
 </body>
 

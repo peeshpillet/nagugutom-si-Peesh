@@ -176,3 +176,6 @@ function setupAddToOrderButtons(sectionSelector, hasExtras = false) {
 // Initialize
 setupAddToOrderButtons('.ramen-section', true);  // ramen has extras
 setupAddToOrderButtons('.apps-section', false);  // sides have no extras
+
+
+

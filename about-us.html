@@ -89,61 +89,83 @@
     </section>
     
     <!-- RAMEN REELS / CAROUSEL SECTION -->
-    <section class="ramen-reels py-5">
+    <section class="ramen-reels py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4">Our Latest Ramen Reels</h2>
-            <div id="ramenReelsCarousel" class="carousel slide" data-bs-ride="carousel">
+    
+            <div id="ramenReelsCarousel" class="carousel slide text-center" data-bs-ride="carousel">
+    
+                <!-- Carousel Inner -->
                 <div class="carousel-inner">
+    
                     <div class="carousel-item active">
-                        <video class="d-block w-100 rounded" controls>
-                            <source src="videos/reel1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <div class="reel-wrapper mx-auto">
+                            <iframe
+                                src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1248913082653500/&show_text=0&width=400"
+                                class="reel-iframe" frameborder="0"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
+    
                     <div class="carousel-item">
-                        <video class="d-block w-100 rounded" controls>
-                            <source src="videos/reel2.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <div class="reel-wrapper mx-auto">
+                            <iframe
+                                src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/769176214890505/&show_text=0&width=400"
+                                class="reel-iframe" frameborder="0"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
+    
                     <div class="carousel-item">
-                        <video class="d-block w-100 rounded" controls>
-                            <source src="videos/reel3.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <div class="reel-wrapper mx-auto">
+                            <iframe
+                                src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1670237890118162/&show_text=0&width=400"
+                                class="reel-iframe" frameborder="0"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
+    
                 </div>
     
-                <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#ramenReelsCarousel"
+                <!-- Circular Prev/Next Buttons (MUST be OUTSIDE .carousel-inner) -->
+                <button class="carousel-control-prev custom-carousel-btn" type="button" data-bs-target="#ramenReelsCarousel"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#ramenReelsCarousel"
+    
+                <button class="carousel-control-next custom-carousel-btn" type="button" data-bs-target="#ramenReelsCarousel"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
     
                 <!-- Indicators -->
-                <div class="carousel-indicators mt-3">
-                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="0" class="active"></button>
-                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="2"></button>
+                <div class="carousel-indicators mt-3 d-flex justify-content-center">
+                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="0"
+                        class="active mx-1"></button>
+                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="1" class="mx-1"></button>
+                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="2" class="mx-1"></button>
                 </div>
+    
             </div>
+    
         </div>
     </section>
     
     
-
+    
     <!-- FOOTER -->
     <footer class="bg-dark text-white py-4 mt-auto">
         <div class="container text-center">
             <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
-            <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning fs-4 me-2">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
-            <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-white-50 small">Admin login</a>
+            <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none"><i
+                    class="fa-brands fa-facebook"></i></a><br>
+            <a href="https://www.facebook.com/RamenNaijiroGTC">Admin login</a>
         </div>
     </footer>
 

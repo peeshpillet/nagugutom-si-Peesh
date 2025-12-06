@@ -38,15 +38,16 @@
     </nav>
 
     <!-- DASHBOARD CONTENT -->
-    <section class="py-5" style="background-color: #f8f9fa; min-height: 80vh;">
+    <section class="admin-dashboard-section">
         <div class="container">
-
+    
             <h2 class="fw-bold mb-4">Admin Dashboard</h2>
-
-            <div class="row g-4">
+    
+            <!-- Top Cards Overview -->
+            <div class="row g-4 mb-4">
                 <!-- Orders Card -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card shadow-sm p-3 h-100">
+                    <div class="dashboard-card" data-tab="orders">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h5>Orders</h5>
@@ -54,27 +55,12 @@
                             </div>
                             <i class="fa-solid fa-receipt fa-2x text-warning"></i>
                         </div>
-                        <a href="track.html" class="stretched-link"></a>
                     </div>
                 </div>
-
-                <!-- Customers Card -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card shadow-sm p-3 h-100">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <h5>Customers</h5>
-                                <p class="mb-0">View customer info</p>
-                            </div>
-                            <i class="fa-solid fa-users fa-2x text-warning"></i>
-                        </div>
-                        <a href="#" class="stretched-link"></a>
-                    </div>
-                </div>
-
+    
                 <!-- Menu Card -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card shadow-sm p-3 h-100">
+                    <div class="dashboard-card" data-tab="menu">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h5>Menu</h5>
@@ -82,13 +68,25 @@
                             </div>
                             <i class="fa-solid fa-bowl-food fa-2x text-warning"></i>
                         </div>
-                        <a href="menu.html" class="stretched-link"></a>
                     </div>
                 </div>
-
+    
+                <!-- Reservations Card -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="dashboard-card" data-tab="reservations">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h5>Reservations</h5>
+                                <p class="mb-0">View and manage reservations</p>
+                            </div>
+                            <i class="fa-solid fa-calendar-check fa-2x text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+    
                 <!-- Settings Card -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card shadow-sm p-3 h-100">
+                    <div class="dashboard-card" data-tab="settings">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h5>Settings</h5>
@@ -96,13 +94,42 @@
                             </div>
                             <i class="fa-solid fa-gear fa-2x text-warning"></i>
                         </div>
-                        <a href="#" class="stretched-link"></a>
                     </div>
                 </div>
             </div>
-
+    
+            <!-- Tabbed Content Sections -->
+            <div class="dashboard-tabs">
+    
+                <!-- Orders Section -->
+                <div class="tab-content" id="orders">
+                    <h4>Orders Management</h4>
+                    <p>Table and actions for orders go here.</p>
+                </div>
+    
+                <!-- Menu Section -->
+                <div class="tab-content d-none" id="menu">
+                    <h4>Menu Management</h4>
+                    <p>Table or cards for editing menu items go here.</p>
+                </div>
+    
+                <!-- Reservations Section -->
+                <div class="tab-content d-none" id="reservations">
+                    <h4>Reservations Management</h4>
+                    <p>Table for reservations and actions go here.</p>
+                </div>
+    
+                <!-- Settings Section -->
+                <div class="tab-content d-none" id="settings">
+                    <h4>Settings</h4>
+                    <p>Forms for account or system settings go here.</p>
+                </div>
+    
+            </div>
+    
         </div>
     </section>
+    
 
     <!-- FOOTER -->
     <footer class="bg-dark text-white py-4 mt-auto text-center">
@@ -112,6 +139,9 @@
         <a href="admin-login.html" class="text-white-50 small">Admin login</a>
     </footer>
 
+    <!-- PANG TAB SWITCH -->
+    <script src="admin-tab.js"></script>
+    
 </body>
 
 </html>

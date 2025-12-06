@@ -1,3 +1,10 @@
+/* COLORS
+    BLACK #1D1616 (NAV BAR/ FOOTBR)
+    DARK RED #8E1616 (BACKGROUND)
+    BRIGHT RED #D84040 
+    WHITE #EEEEEE (TEXT)
+
+*/
 /* GENERAL STYLES */
 body {
     margin: 0;
@@ -221,14 +228,101 @@ nav {
 
 /* ===========================END OF INDEX PAGE STYLES=================*/
 /* ===========================MENU PAGE STYLESS=================*/
-/* RAMEN SECTION */
-.ramen-section {
+/* ===================== BRANCH SELECTION & MAP SECTION ===================== */
+.branch-form-section {
     background-color: #8E1616;
     padding: 80px 20px;
 }
 
-.ramen-section h1{
+.branch-form-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
     color: #EEEEEE;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.branch-form-section form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.branch-form-section .form-label {
+    font-weight: 600;
+}
+
+.branch-form-section .form-control,
+.branch-form-section .form-select,
+.branch-form-section textarea {
+    border-radius: 8px;
+}
+
+.branch-form-section .btn-warning {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.branch-form-section .btn-warning:hover {
+    background-color: #a21b1b;
+    transform: translateY(-2px);
+}
+
+/* Map placeholder */
+.branch-form-section .map-placeholder {
+    border-radius: 12px;
+    background-color: #ddd;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+/* Branch info */
+.branch-form-section .branch-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.branch-form-section .branch-info .branch-address {
+    font-weight: 700;
+    color: #1D1616;
+    font-size: 1rem;
+}
+
+.branch-form-section .branch-info .branch-eta {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .branch-form-section .map-placeholder {
+        height: 300px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .branch-form-section form {
+        padding: 20px;
+    }
+}
+
+/* RAMEN SECTION */
+.ramen-section {
+    background-color: #EEEEEE;
+    padding: 80px 20px;
+}
+
+.ramen-section h1{
+    color: #8E1616;
 }
 
 .ramen-section .card {
@@ -316,12 +410,12 @@ nav {
 
 /* APPS / SIDES SECTION */
 .apps-section {
-    background-color: #EEEEEE;
+    background-color: #8E1616;
     padding: 80px 20px;
 }
 
 .apps-section h1 {
-    color: #8E1616;
+    color: #EEEEEE;
     text-align: left;
     margin-bottom: 40px;
     font-family: 'Roboto Slab', serif;
@@ -429,103 +523,186 @@ nav {
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
-/* ===========================END OF MENU PAGE STYLES=================*/
+/* =================================================END OF MENU PAGE STYLES====================================================================*/
 
-/* ================== ABOUT US PAGE ================== */
+/* ================================================ABOUT US PAGE STYLES=========================================================================*/
+
+/* OUR STORY SECTION */
 .about-page {
-    background-color: #8E1616;
-    /* red background across entire page */
-    color: #fff;
-    /* default text white for readability */
     padding: 80px 20px;
-}
-
-.about-tupperware {
-    background-color: #EEEEEE;
-    /* container light for contrast */
-    color: #8E1616;
-    border-radius: 20px;
-    padding: 50px 30px;
+    background-color: #8E1616;
+    color: #EEEEEE;
 }
 
 .about-page h2 {
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 2.3rem;
-    color: #3D1A1A;
+    color: #EEEEEE;
+    /* gold headings */
 }
 
 .about-page p {
     font-family: 'Roboto Slab', serif;
     font-size: 1.1rem;
+    color: #fff;
     line-height: 1.7;
 }
 
-/* Why Choose Us */
+/* Video Embed Styling */
+.about-page .story-video {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* ================== WHY CHOOSE US SECTION ================== */
+.why-choose-us {
+    padding: 80px 20px;
+    background-color: #1D1616;
+    color: #EEEEEE;
+    text-align: center;
+}
+
 .why-choose-us h2 {
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 2rem;
-    background-color: #fff;
+    color: #EEEEEE;
+    margin-bottom: 40px;
+}
+
+.why-choose-us i {
+    color: #D84040;
+    margin-bottom: 15px;
 }
 
 .why-choose-us h5 {
     font-family: 'Roboto Slab', serif;
     font-weight: 600;
-    color: #fff;
+    margin-bottom: 10px;
 }
 
 .why-choose-us p {
     font-size: 1rem;
-    color: #ddd;
+    color: #EEEEEE;
 }
 
-/* Icons */
-.why-choose-us .fa-3x {
-    color: #ffc107;
+/* ================== RAMEN REELS / CAROUSEL ================== */
+.ramen-reels {
+    padding: 80px 20px;
+    background-color: #EEEEEE;
+    color: #8E1616;
+    text-align: center;
 }
 
-/* Video Carousel */
+/* Make carousel buttons position relative to carousel */
+#ramenReelsCarousel {
+    position: relative;
+    /* fixes button movement */
+}
+
 .ramen-reels h2 {
-    color: #fff;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #8E1616;
+    margin-bottom: 40px;
 }
 
-#ramenReelsCarousel .carousel-item video {
+/* Wrapper ensures the container matches reel size */
+.reel-wrapper {
+    width: 400px;
+    display: inline-block;
+    /* important for buttons to align properly */
+    position: relative;
+    margin: 0 auto;
+}
+
+/* Carousel iframe styling */
+.reel-iframe {
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    height: 711px;
 }
 
-.carousel-indicators button {
-    background-color: #ffc107;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: #ffc107;
+/* Circular controls */
+.custom-carousel-btn {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    padding: 10px;
+    background-color: #1D1616;
+    border: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    transition: opacity 0.3s, transform 0.3s;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .about-page h2 {
-        font-size: 2rem;
-    }
-
-    .about-page p {
-        font-size: 1rem;
-    }
+/* Hover effect */
+.custom-carousel-btn:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
 }
 
+/* Bring buttons closer to video */
+.carousel-control-prev.custom-carousel-btn {
+    left: -25px;
+}
+
+.carousel-control-next.custom-carousel-btn {
+    right: -25px;
+}
+
+/* Arrow icons inside buttons */
+.custom-carousel-btn .carousel-control-prev-icon,
+.custom-carousel-btn .carousel-control-next-icon {
+    background-size: 60% 60%;
+    width: 20px;
+    height: 20px;
+}
+
+/* Carousel indicators (dots) */
+.carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #1D1616;
+    border: none;
+}
+
+.carousel-indicators button.active {
+    background-color: #3D1A1A;
+}
+
+/* ================== Responsive tweaks ================== */
 @media (max-width: 576px) {
-    .about-page {
-        padding: 50px 15px;
+    .reel-wrapper {
+        width: 300px;
     }
 
-    .why-choose-us .fa-3x {
-        font-size: 2rem;
+    .reel-iframe {
+        height: 533px;
+    }
+
+    .custom-carousel-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .carousel-indicators button {
+        width: 10px;
+        height: 10px;
     }
 }
+
 
 /* ===========================END OF ABOUT US PAGE STYLES=================*/
 /* ===========================CHECKOUT STYLES=================*/
@@ -538,6 +715,10 @@ nav {
     background-position: center;
     background-repeat: no-repeat;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.checkout{
+    background-color: #8E1616;
 }
 .checkout h2,
 .checkout h4 {
@@ -574,7 +755,7 @@ nav {
     padding-bottom: 40px;
 }
 
-/* Track Order Header - Gradient + Image + Overlay */
+/* Track Order Header - Matching Other Page Headers */
 .tracking-header {
     position: relative;
     height: 300px;
@@ -582,36 +763,37 @@ nav {
     align-items: center;
     justify-content: center;
     color: white;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    /* match other headers */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    /* match other headers */
     overflow: hidden;
 
+    /* Gradient overlay + background image */
     background:
-        linear-gradient(180deg,
-            rgba(29, 22, 22, 0.8),
-            rgba(178, 34, 34, 0.6),
-            #8E1616),
-        url('img/ramen.jpg');
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)),
+        url('img/menu img/garlic butter tofu.jpg');
 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* Optional overlay for extra dimming */
+/* Optional: adjust overlay content spacing */
+.tracking-header .content {
+    z-index: 1;
+}
+
 .tracking-header .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-/* Header content above overlay */
-.tracking-header .content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    /* subtle dark overlay */
+    z-index: 0;
 }
 
 /* Unified Tracking Card */
@@ -666,8 +848,8 @@ nav {
 
 /* Active step icon */
 .modern-progress .step.active .icon {
-    background-color: #ffc107;
-    color: #8E1616;
+    background-color: #cccccc65;
+    color: #D84040;
 }
 
 /* Step label */
@@ -689,7 +871,7 @@ nav {
 
 /* Active line */
 .modern-progress .line.active {
-    background-color: #ffc107;
+    background-color: #2d934d;
 }
 
 /* Detail Boxes */
@@ -705,10 +887,11 @@ nav {
     background-color: rgba(255, 193, 7, 0.05);
 }
 
-.detail-box i {
-    color: #ffc107;
+.detail-box i,
+.detail-box i * {
+    color: #8E1616 !important;
+    /* Force the icon color to theme red */
 }
-
 /* Responsive tweaks */
 @media (max-width: 768px) {
     .modern-progress {
@@ -722,3 +905,153 @@ nav {
     }
 }
 
+.receipt{
+    list-style: none;
+    text-align: right;
+}
+
+/* ===========================END OF ORDER TRACK PAGE STYLES=================*/
+/* ============================================================ ADMIN LOGIN PAGE ========================================================= */
+
+/* Admin Login Section */
+.admin-login-section {
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('img/checkout menu.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+    color: #FFFFFF;
+    /* text color for readability */
+}
+
+/* Login Card */
+.admin-login-card {
+    background-color: #FFFFFF;
+    color: #1D1616;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 100%;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-login-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+}
+
+/* Card Header */
+.admin-login-card h3 {
+    font-weight: 700;
+    color: #8E1616;
+    margin-bottom: 1.5rem;
+}
+
+/* Form Labels */
+.admin-login-card .form-label {
+    font-weight: 600;
+    color: #1D1616;
+}
+
+/* Input Fields */
+.admin-login-card .form-control {
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.admin-login-card .form-control:focus {
+    border-color: #D84040;
+    box-shadow: 0 0 5px rgba(216, 64, 64, 0.5);
+}
+
+/* Login Button */
+.admin-login-card .btn-login {
+    background-color: #8E1616;
+    color: #FFFFFF;
+    font-weight: 700;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.admin-login-card .btn-login:hover {
+    background-color: #a21f1f;
+    transform: translateY(-2px);
+}
+
+/* Optional: Icon inside button */
+.admin-login-card .btn-login i {
+    margin-right: 8px;
+}
+
+/* Footer Adjustment for Admin Page (optional) */
+.admin-login-footer {
+    background-color: #1D1616;
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.admin-login-footer a {
+    color: #EEEEEE;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: 5px;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.admin-login-footer a:hover {
+    color: #D84040;
+}
+
+/* =======================================================END OF ADMIN LOGIN PAGE ========================================================= */
+/* Admin Dashboard Section */
+.admin-dashboard-section {
+    background-color: #f8f9fa;
+    min-height: 80vh;
+    padding: 3rem 1rem;
+}
+
+/* Dashboard Cards (Top Overview) */
+.dashboard-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Tabbed Content */
+.dashboard-tabs {
+    margin-top: 2rem;
+}
+
+.tab-content {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide inactive tabs */
+.d-none {
+    display: none !important;
+}
