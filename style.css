@@ -1428,12 +1428,6 @@ nav {
     margin-bottom: 2rem;
 }
 
-/* Individual Columns no longer need flex */
-.menu-mgmt-col {
-    display: contents;
-    /* lets the grid control the layout directly */
-}
-
 /* Cards */
 .menu-mgmt-card,
 .menu-mgmt-extra-card {
