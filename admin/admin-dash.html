@@ -16,120 +16,313 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;600;900&display=swap" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
-<body style="font-family: 'Roboto Slab', serif;">
+<body style="font-family: 'Roboto Slab', serif; min-height:100vh; display:flex; flex-direction:column;">
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
-                <img src="img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle">
+                <img src="../img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle"
+                    style="width:50px; height:50px; object-fit:cover; border-radius:50%; margin-right:10px;">
                 Ramen Naijiro
             </a>
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="admin-dashboard.html">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="track.html">Track Orders</a></li>
-                <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link active" href="admin-res.html">Reservations</a></li>
                 <li class="nav-item"><a class="nav-link" href="admin-login.html">Logout</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- DASHBOARD CONTENT -->
-    <section class="admin-dashboard-section">
+    <section class="admin-dashboard-section flex-grow-1">
         <div class="container">
-    
             <h2 class="fw-bold mb-4">Admin Dashboard</h2>
-    
-            <!-- Top Cards Overview -->
+
+            <!-- Top Cards Overview (Tabs) -->
             <div class="row g-4 mb-4">
-                <!-- Orders Card -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="dashboard-card" data-tab="orders">
+                <div class="col-md-6 col-lg-6 dashboard-tab" data-target="orders-section">
+                    <div class="dashboard-card">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h5>Orders</h5>
                                 <p class="mb-0">Track and manage orders</p>
+                                <span class="badge badge-custom">12 New</span>
                             </div>
-                            <i class="fa-solid fa-receipt fa-2x text-warning"></i>
+                            <i class="fa-solid fa-receipt fa-2x"></i>
                         </div>
                     </div>
                 </div>
-    
-                <!-- Menu Card -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="dashboard-card" data-tab="menu">
+                <div class="col-md-6 col-lg-6 dashboard-tab" data-target="menu-section">
+                    <div class="dashboard-card">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h5>Menu</h5>
                                 <p class="mb-0">Edit menu items</p>
                             </div>
-                            <i class="fa-solid fa-bowl-food fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Reservations Card -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="dashboard-card" data-tab="reservations">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <h5>Reservations</h5>
-                                <p class="mb-0">View and manage reservations</p>
-                            </div>
-                            <i class="fa-solid fa-calendar-check fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Settings Card -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="dashboard-card" data-tab="settings">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <h5>Settings</h5>
-                                <p class="mb-0">Manage account settings</p>
-                            </div>
-                            <i class="fa-solid fa-gear fa-2x text-warning"></i>
+                            <i class="fa-solid fa-bowl-food fa-2x"></i>
                         </div>
                     </div>
                 </div>
             </div>
-    
-            <!-- Tabbed Content Sections -->
-            <div class="dashboard-tabs">
-    
-                <!-- Orders Section -->
-                <div class="tab-content" id="orders">
-                    <h4>Orders Management</h4>
-                    <p>Table and actions for orders go here.</p>
+            
+
+            <!-- Dashboard Tab Container -->
+            <div class="dashboard-tabs-container container py-4">
+            
+                <!-- Tab Sections -->
+                <div class="dashboard-tabs">
+            
+                    <!-- Orders Section -->
+                    <div class="dashboard-section active-section" id="orders-section">
+                        <div class="dashboard-section-container p-4 rounded shadow-sm">
+                            <!-- Header -->
+                            <div class="dashboard-section-header mb-3">
+                                <h4 class="dashboard-section-title">Orders Management</h4>
+                                <p class="dashboard-section-desc">View, track, and manage all customer orders.</p>
+                            </div>
+                    
+                            <!-- Content -->
+                            <div class="dashboard-section-content row g-4">
+                                <!-- Left Column: Customer Details -->
+                                <div class="cust-details col-md-4">
+                                    <h5>Customer Details</h5>
+                                    <ul class="customer-details list-unstyled p-2 rounded shadow-sm">
+                                        <li><strong>Order ID:</strong> #001</li>
+                                        <li><strong>Customer:</strong> John Doe</li>
+                                        <li><strong>Date:</strong> 2025-12-06</li>
+                                        <li><strong>Status:</strong> <span class="badge badge-custom">Pending</span></li>
+                                        <li><strong>Email:</strong> johndoe@example.com</li>
+                                        <li><strong>Phone:</strong> +1 234 567 890</li>
+                                        <li><strong>Address:</strong> 123 Main St, City, Country</li>
+                                    </ul>
+                                </div>
+                    
+                                <!-- Right Column: Receipt -->
+                                <div class="receipt col-md-8">
+                                    <h5>Order Receipt</h5>
+                                    <div class="receipt-card p-3 rounded shadow-sm">
+                                        <table class="table table-sm table-borderless mb-2">
+                                            <thead class="table">
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Teriyaki Tofu</td>
+                                                    <td>2</td>
+                                                    <td>$9.99</td>
+                                                    <td>$19.98</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Ramen Bowl</td>
+                                                    <td>1</td>
+                                                    <td>$12.99</td>
+                                                    <td>$12.99</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="3" class="text-end">Subtotal</th>
+                                                    <th>$32.97</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="3" class="text-end">Tax</th>
+                                                    <th>$2.64</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="3" class="text-end">Total</th>
+                                                    <th>$35.61</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                    
+                                        <!-- Action Buttons -->
+                                        <div class="text-end mt-2">
+                                            <button class="btn btn-sm btn-primary">View</button>
+                                            <button class="btn btn-sm btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Menu Management Section -->
+                    <div class="menu-mgmt-section" id="menu-section">
+                        <div class="menu-mgmt-container">
+                    
+                            <!-- Header -->
+                            <div class="menu-mgmt-header">
+                                <h4 class="menu-mgmt-title">Menu Management</h4>
+                                <p class="menu-mgmt-desc">Edit menu items, prices, and availability.</p>
+                            </div>
+                    
+                            <!-- ==================== RAMEN CATEGORY ==================== -->
+                            <h5 class="menu-category-title">🍜 Ramen</h5>
+                            <div class="menu-mgmt-row mb-5">
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-card">
+                                        <img src="img/menu img/shoyu3.jpg" class="menu-mgmt-img" alt="Shoyu Ramen">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Shoyu Ramen</h6>
+                                            <p class="card-text">Soy sauce - chashu pork - beansprouts - leeks - egg</p>
+                                            <p class="fw-bold">S 169 / R 199 / L 229</p>
+                                            <div class="card-btns">
+                                                <button class="btn btn-warning">Edit</button>
+                                                <button class="btn btn-danger">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-card">
+                                        <img src="img/menu img/shoyu3.jpg" class="menu-mgmt-img" alt="Shoyu Ramen">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Shoyu Ramen</h6>
+                                            <p class="card-text">Soy sauce - chashu pork - beansprouts - leeks - egg</p>
+                                            <p class="fw-bold">S 169 / R 199 / L 229</p>
+                                            <div class="card-btns">
+                                                <button class="btn btn-warning">Edit</button>
+                                                <button class="btn btn-danger">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-card">
+                                        <img src="img/menu img/tonkotsu2.jpg" class="menu-mgmt-img" alt="Tonkotsu Ramen">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Tonkotsu Ramen</h6>
+                                            <p class="card-text">Chashu pork - black fungus - spring onions - leeks - egg</p>
+                                            <p class="fw-bold">S 159 / R 189 / L 219</p>
+                                            <div class="card-btns">
+                                                <button class="btn btn-warning">Edit</button>
+                                                <button class="btn btn-danger">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- ==================== SIDES CATEGORY ==================== -->
+                            <h5 class="menu-category-title">🥟 Sides</h5>
+                            <div class="menu-mgmt-row mb-5">
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-card">
+                                        <img src="img/menu img/gyoza.jpg" class="menu-mgmt-img" alt="Gyoza">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Gyoza</h6>
+                                            <p class="card-text">Pan-fried dumplings</p>
+                                            <p class="fw-bold">4pcs ₱89 / 6pcs ₱129</p>
+                                            <div class="card-btns">
+                                                <button class="btn btn-warning">Edit</button>
+                                                <button class="btn btn-danger">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-card">
+                                        <img src="img/menu img/kaarage.jpg" class="menu-mgmt-img" alt="Chicken Karaage">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Chicken Karaage</h6>
+                                            <p class="card-text">Crispy Japanese fried chicken</p>
+                                            <p class="fw-bold">₱149</p>
+                                            <div class="card-btns">
+                                                <button class="btn btn-warning">Edit</button>
+                                                <button class="btn btn-danger">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-card">
+                                        <img src="img/menu img/kaarage.jpg" class="menu-mgmt-img" alt="Chicken Karaage">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Chicken Karaage</h6>
+                                            <p class="card-text">Crispy Japanese fried chicken</p>
+                                            <p class="fw-bold">₱149</p>
+                                            <div class="card-btns">
+                                                <button class="btn btn-warning">Edit</button>
+                                                <button class="btn btn-danger">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-card">
+                                        <img src="img/menu img/kaarage.jpg" class="menu-mgmt-img" alt="Chicken Karaage">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Chicken Karaage</h6>
+                                            <p class="card-text">Crispy Japanese fried chicken</p>
+                                            <p class="fw-bold">₱149</p>
+                                            <div class="card-btns">
+                                                <button class="btn btn-warning">Edit</button>
+                                                <button class="btn btn-danger">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- ==================== RAMEN EXTRAS (NO IMAGE) ==================== -->
+                            <h5 class="menu-category-title">➕ Ramen Extras</h5>
+                            <div class="menu-mgmt-row">
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-extra-card">
+                                        <h6 class="card-title">Extra Noodles</h6>
+                                        <p class="fw-bold">₱29</p>
+                                        <div class="card-btns">
+                                            <button class="btn btn-warning">Edit</button>
+                                            <button class="btn btn-danger">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-extra-card">
+                                        <h6 class="card-title">Extra Egg</h6>
+                                        <p class="fw-bold">₱25</p>
+                                        <div class="card-btns">
+                                            <button class="btn btn-warning">Edit</button>
+                                            <button class="btn btn-danger">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-mgmt-col">
+                                    <div class="menu-mgmt-extra-card">
+                                        <h6 class="card-title">Chashu Slice</h6>
+                                        <p class="fw-bold">₱49</p>
+                                        <div class="card-btns">
+                                            <button class="btn btn-warning">Edit</button>
+                                            <button class="btn btn-danger">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+                    </div>
+                    
+                    
+                    
                 </div>
-    
-                <!-- Menu Section -->
-                <div class="tab-content d-none" id="menu">
-                    <h4>Menu Management</h4>
-                    <p>Table or cards for editing menu items go here.</p>
-                </div>
-    
-                <!-- Reservations Section -->
-                <div class="tab-content d-none" id="reservations">
-                    <h4>Reservations Management</h4>
-                    <p>Table for reservations and actions go here.</p>
-                </div>
-    
-                <!-- Settings Section -->
-                <div class="tab-content d-none" id="settings">
-                    <h4>Settings</h4>
-                    <p>Forms for account or system settings go here.</p>
-                </div>
-    
+            
             </div>
-    
+            
         </div>
     </section>
-    
 
     <!-- FOOTER -->
     <footer class="bg-dark text-white py-4 mt-auto text-center">
@@ -139,9 +332,9 @@
         <a href="admin-login.html" class="text-white-50 small">Admin login</a>
     </footer>
 
-    <!-- PANG TAB SWITCH -->
+    <!-- Tab JS -->
     <script src="admin-tab.js"></script>
-    
+
 </body>
 
 </html>

@@ -1,6 +1,13 @@
+// admin-tab.js
 document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('.dashboard-tab');
     const sections = document.querySelectorAll('.dashboard-section');
+
+    // Set the first tab as active by default
+    if (tabs.length > 0 && sections.length > 0) {
+        tabs[0].classList.add('active-tab');
+        sections[0].classList.add('active-section');
+    }
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -10,7 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Add active class to the clicked tab and its corresponding section
             tab.classList.add('active-tab');
-            document.getElementById(tab.dataset.target).classList.add('active-section');
+            const targetId = tab.dataset.target;
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('active-section');
+            }
         });
     });
 });
