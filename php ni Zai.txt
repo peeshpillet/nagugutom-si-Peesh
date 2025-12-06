@@ -1,0 +1,60 @@
+<?php
+// admin-login.php - Admin login with DB validation
+
+session_start();
+require_once '../config.php';
+
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    if ($username === '' || $password === '') {
+        $error = 'Please enter both username and password.';
+    } else {
+        // Look up user by username
+        $stmt = $mysqli->prepare("
+            SELECT id, username, password, full_name
+            FROM admin_users
+            WHERE username = ?
+            LIMIT 1
+        ");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $admin  = $result->fetch_assoc();
+        $stmt->close();
+
+        // Plain-text compare (no hash as requested)
+        if ($admin && $password === $admin['password']) {
+            $_SESSION['admin_id']   = $admin['id'];
+            $_SESSION['admin_name'] = $admin['full_name'] ?: $admin['username'];
+
+            // Send her to dashboard
+            header('Location: admin-dash.html');
+            exit;
+        } else {
+            $error = 'Invalid username or password.';
+        }
+    }
+}
+?>
+
+<?php
+// config.php - shared DB connection for the site
+
+$host = 'localhost';
+$user = 'root';
+$pass = 'Pokemon2003';
+$db   = 'ramen_naijiro'; // must match the DB name above
+
+$mysqli = new mysqli($host, $user, $pass, $db);
+
+if ($mysqli->connect_errno) {
+    die('Failed to connect to MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+}
+
+// Optional but good practice
+$mysqli->set_charset('utf8mb4');
+?>
