@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ramen Naijiro | Admin Reservations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;600;900&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body style="font-family: 'Roboto Slab', serif; min-height:100vh; display:flex; flex-direction:column;">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="../img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle"
+                    style="width:50px; height:50px; object-fit:cover; border-radius:50%; margin-right:10px;">
+                Ramen Naijiro
+            </a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link active" href="admin-res.html">Reservations</a></li>
+                <li class="nav-item"><a class="nav-link" href="admin-login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- RESERVATIONS CONTENT -->
+    <section class="admin-res flex-grow-1">
+        <div class="container">
+            <h2 class="admin-res-title">Reservations Management</h2>
+    
+            <!-- Main Card -->
+            <div class="admin-res-card">
+                <h4>Reservation Calendar</h4>
+                <p>This is where your calendar API or reservation table will be implemented.</p>
+    
+                <!-- Calendar Placeholder -->
+                <div class="admin-res-calendar">
+                    Calendar will go here
+                </div>
+    
+                <!-- Add/Remove Buttons -->
+                <div class="admin-res-actions">
+                    <button class="btn btn-success">Add Reservation</button>
+                    <button class="btn btn-danger">Remove Reservation</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- FOOTER -->
+    <footer class="text-white py-4 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
+            <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none"><i
+                    class="fa-brands fa-facebook"></i></a><br>
+            <a href="admin/admin-login.html">Admin Login</a>
+            <a href="contact-us.html">Contact Us</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

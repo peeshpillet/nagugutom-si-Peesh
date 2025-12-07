@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ramen Naijiro | Contact Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle">
+                Ramen Naijiro
+            </a>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="track-order.html">Track Order</a></li>
+                <li class="nav-item ms-3">
+                    <button class="btn btn-warning"><i class="fa-solid fa-bag-shopping me-1"></i> Order Now</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="text-center py-5 page-header">
+        <div class="container">
+            <h1 class="display-4">Contact Us</h1>
+            <p class="lead">Delicious ramen and sides you can order online!</p>
+        </div>
+    </section>
+
+    <!-- CONTACT / RESERVATION SECTION -->
+    <section class="contact-us-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Reserve Your Table</h2>
+    
+            <div class="row justify-content-center">
+                <!-- Reservation Form -->
+                <div class="col-lg-6">
+                    <form class="contact-form p-4 rounded shadow-sm">
+                        <!-- Customer Details -->
+                        <div class="mb-3">
+                            <label for="customerName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="customerName" placeholder="John Doe" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="customerEmail" placeholder="example@email.com"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerPhone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="customerPhone" placeholder="+63 912 345 6789"
+                                required>
+                        </div>
+                        <!-- Date & Time -->
+                        <div class="mb-3">
+                            <label for="reservationDate" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="reservationDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reservationTime" class="form-label">Time</label>
+                            <input type="time" class="form-control" id="reservationTime" required>
+                        </div>
+                        <!-- Notes -->
+                        <div class="mb-3">
+                            <label for="reservationNotes" class="form-label">Notes / Special Requests</label>
+                            <textarea class="form-control" id="reservationNotes" rows="3"
+                                placeholder="Allergies, seating preference, etc."></textarea>
+                        </div>
+                        <!-- Submit -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-warning px-4">Submit Reservation</button>
+                        </div>
+                    </form>
+                </div>
+    
+                <!-- Calendar & Operating Hours Box -->
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="calendar-box p-4 rounded shadow-sm">
+                        <!-- Calendar Placeholder -->
+                        <div class="calendar-placeholder text-center mb-4">
+                            <h4>Reservation Calendar</h4>
+                            <p>This is where a calendar API (e.g., FullCalendar) can be integrated to show available slots.
+                            </p>
+                        </div>
+    
+                        <!-- Operating Hours Box -->
+                        <div class="operating-hours-box p-3 rounded bg-light text-center">
+                            <h5 class="mb-3">Operating Hours</h5>
+                            <p>
+                                2pm - 10pm DAILY 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
+            <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none"><i
+                    class="fa-brands fa-facebook"></i></a><br>
+            <a href="admin/admin-login.html">Admin Login</a>
+            <a href="contact-us.html">Contact Us</a>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

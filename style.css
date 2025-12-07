@@ -1,3 +1,12 @@
+/* 
+█████ ██      █████  ██████   ██   ██     
+██     ██     ██   ██ ██  ██  ████  ██     
+██  ██ ██     ██   ██ ██████ ██  ██ ██     
+██   ██ ██     ██   ██ ██████ ██████ ██     
+██  ██  ██     ██   ██ ██  ██ ██  ██ ██     
+ █████ ██████  █████  ██████ ██  ██ ██████ 
+                                          
+ /* 
 /* COLORS
     BLACK #1D1616 (NAV BAR/ FOOTBR)
     DARK RED #8E1616 (BACKGROUND)
@@ -9,7 +18,7 @@
 body {
     margin: 0;
     font-family: 'Roboto Slab', serif;
-
+    
 
 }
 
@@ -54,10 +63,6 @@ nav {
     text-decoration: none;
 }
 
-.navbar-brand:hover {
-    color: #fff;
-}
-
 .logo-circle {
     width: 50px;
     height: 50px;
@@ -66,6 +71,15 @@ nav {
     margin-right: 10px;
 }
 
+/* 
+██████ ██   ██ █████  ██████ ██   ██ 
+  ██   ███  ██ ██  ██ ██      ██ ██  
+  ██   ████ ██ ██   ██ █████    ███   
+  ██   ██ ████ ██   ██ ██       ███   
+  ██   ██  ███ ██  ██  ██      ██ ██  
+██████ ██   ██ █████   ██████ ██   ██ 
+                                   
+*/
 
 /* INDEX PAGE STYLES*/
 /* HERO SECTION */
@@ -227,6 +241,16 @@ nav {
 
 
 /* ===========================END OF INDEX PAGE STYLES=================*/
+
+/* 
+██   ██ ██████ ██   ██ ██   ██ 
+███ ███ ██     ███  ██ ██   ██ 
+███████ █████  ████ ██ ██   ██ 
+██ █ ██ ██     ██ ████ ██   ██ 
+██   ██ ██     ██  ███ ██   ██ 
+██   ██ ██████ ██   ██  █████  
+                            
+*/
 /* ===========================MENU PAGE STYLESS=================*/
 /* ===================== BRANCH SELECTION & MAP SECTION ===================== */
 .branch-form-section {
@@ -525,6 +549,15 @@ nav {
 }
 /* =================================================END OF MENU PAGE STYLES====================================================================*/
 
+/*
+██   ██████  █████  ██   ██ ██████     ██   ██  █████ 
+████  ██  ██ ██   ██ ██   ██   ██       ██   ██ ██     
+██  ██ ██████ ██   ██ ██   ██   ██       ██   ██  ████  
+██████ ██████ ██   ██ ██   ██   ██       ██   ██     ██ 
+██  ██ ██  ██ ██   ██ ██   ██   ██       ██   ██     ██ 
+██  ██ ██████  █████   █████    ██        █████  █████  
+                                                    
+*/
 /* ================================================ABOUT US PAGE STYLES=========================================================================*/
 
 /* OUR STORY SECTION */
@@ -705,6 +738,17 @@ nav {
 
 
 /* ===========================END OF ABOUT US PAGE STYLES=================*/
+
+/*
+█████ ██  ██ ██████  █████ ██  ██  █████  ██   ██ ██████ 
+██     ██  ██ ██     ██     ██ ██  ██   ██ ██   ██   ██   
+██     ██████ █████  ██     ████   ██   ██ ██   ██   ██   
+██     ██  ██ ██     ██     ██ ██  ██   ██ ██   ██   ██   
+██     ██  ██ ██     ██     ██  ██ ██   ██ ██   ██   ██   
+ █████ ██  ██ ██████  █████ ██   ██  █████   █████    ██   
+                                                        
+
+*/
 /* ===========================CHECKOUT STYLES=================*/
 
 .page-header {
@@ -723,7 +767,7 @@ nav {
 .checkout h2,
 .checkout h4 {
     font-family: 'Roboto Slab', serif;
-    color: #3D1A1A;
+    color: #8E1616;
 }
 
 .checkout .card {
@@ -746,7 +790,17 @@ nav {
 
 /* ===========================END OF CHECKOUT PAGE STYLES=================*/
 
+/*
+██████ ██████    ██    █████ ██  ██      █████  ██████  █████  ██████ ██████  
+  ██   ██   ██  ████  ██     ██ ██      ██   ██ ██   ██ ██  ██ ██     ██   ██ 
+  ██   ██████  ██  ██ ██     ████       ██   ██ ██████  ██   ██ █████  ██████  
+  ██   ██ ██   ██████ ██     ██ ██      ██   ██ ██ ██   ██   ██ ██     ██ ██   
+  ██   ██  ██  ██  ██ ██     ██  ██     ██   ██ ██  ██  ██  ██  ██     ██  ██  
+  ██   ██   ██ ██  ██  █████ ██   ██      █████  ██   ██ █████   ██████ ██   ██ 
+                                                                          
+*/
 /* ===========================TRACK ORDER PAGE=================*/
+
 
 /* Page background */
 .track-order-page {
@@ -910,8 +964,94 @@ nav {
     text-align: right;
 }
 
+/*
+ █████  █████  ██   ██ ██████   ██    █████ ██████     ██   ██  █████ 
+██     ██   ██ ███  ██   ██    ████  ██       ██       ██   ██ ██     
+██     ██   ██ ████ ██   ██   ██  ██ ██       ██       ██   ██  ████  
+██     ██   ██ ██ ████   ██   ██████ ██       ██       ██   ██     ██ 
+██     ██   ██ ██  ███   ██   ██  ██ ██       ██       ██   ██     ██ 
+ █████  █████  ██   ██   ██   ██  ██  █████   ██        █████  █████  
+                                                                   
+*/
+
+/* CONTACT / RESERVATION SECTION */
+.contact-us-section {
+    background-color: #8E1616;
+    color: #333;
+}
+
+.contact-us-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color:#EEEEEE
+}
+
+.contact-form {
+    background-color: #fff;
+    color: #8E1616;
+    transition: box-shadow 0.3s ease;
+}
+
+
+.contact-form .form-control {
+    border-radius: 0.5rem;
+}
+
+.contact-form button {
+    font-weight: 600;
+    transition: transform 0.2s ease;
+}
+
+.contact-form button:hover {
+    transform: scale(1.05);
+}
+
+.calendar-placeholder {
+    background-color: #fff;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.calendar-placeholder:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.operating-hours-box{
+    color: #8E1616;
+}
+
 /* ===========================END OF ORDER TRACK PAGE STYLES=================*/
+/*
+  ██   █████  ██   ██ ██████ ██   ██      █████ ██████ █████  ██████ 
+ ████  ██  ██ ███ ███   ██   ███  ██     ██       ██   ██  ██ ██     
+██  ██ ██   ██ ███████   ██   ████ ██      ████    ██   ██   ██ █████  
+██████ ██   ██ ██ █ ██   ██   ██ ████         ██   ██   ██   ██ ██     
+██  ██ ██  ██  ██   ██   ██   ██  ███         ██   ██   ██  ██  ██     
+██  ██ █████   ██   ██ ██████ ██   ██     █████  ██████ █████   ██████ 
+*/
+
 /* ============================================================ ADMIN LOGIN PAGE ========================================================= */
+
+/*
+  ██   █████  ██   ██ ██████ ██   ██     ██      █████   █████ ██████ ██   ██ 
+ ████  ██  ██ ███ ███   ██   ███  ██     ██     ██   ██ ██       ██   ███  ██ 
+██  ██ ██   ██ ███████   ██   ████ ██     ██     ██   ██ ██  ██   ██   ████ ██ 
+██████ ██   ██ ██ █ ██   ██   ██ ████     ██     ██   ██ ██   ██   ██   ██ ████ 
+██  ██ ██  ██  ██   ██   ██   ██  ███     ██     ██   ██ ██  ██    ██   ██  ███ 
+██  ██ █████   ██   ██ ██████ ██   ██     ██████  █████   █████ ██████ ██   ██ 
+*/
+
+/* Admin Page Wrapper */
+.admin-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* full viewport height */
+}
 
 /* Admin Login Section */
 .admin-login-section {
@@ -919,13 +1059,13 @@ nav {
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url('img/checkout menu.jpg') no-repeat center center;
     background-size: cover;
-    min-height: 80vh;
+    flex: 1;
+    /* take all available space */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 3rem 1rem;
     color: #FFFFFF;
-    /* text color for readability */
 }
 
 /* Login Card */
@@ -995,12 +1135,16 @@ nav {
     margin-right: 8px;
 }
 
-/* Footer Adjustment for Admin Page (optional) */
+/* ===================== ADMIN LOGIN FOOTER ===================== */
 .admin-login-footer {
     background-color: #1D1616;
     color: #fff;
     padding: 30px 0;
     text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.95rem;
+    margin-top: auto;
+    /* push footer to bottom */
 }
 
 .admin-login-footer a {
@@ -1016,17 +1160,50 @@ nav {
     color: #D84040;
 }
 
-/* =======================================================END OF ADMIN LOGIN PAGE ========================================================= */
+/* ============================================================ ADMIN DASHBOARD ========================================================= */
+
+/*
+  ██   █████  ██   ██ ██████ ██   ██     █████    ██    █████ ██  ██ 
+ ████  ██  ██ ███ ███   ██   ███  ██     ██  ██  ████  ██     ██  ██ 
+██  ██ ██   ██ ███████   ██   ████ ██     ██   ██ ██  ██  ████  ██████ 
+██████ ██   ██ ██ █ ██   ██   ██ ████     ██   ██ ██████     ██ ██  ██ 
+██  ██ ██  ██  ██   ██   ██   ██  ███     ██  ██  ██  ██     ██ ██  ██ 
+██  ██ █████   ██   ██ ██████ ██   ██     █████   ██  ██ █████  ██  ██ 
+*/
+
+/* Keep navbar brand/logo always white */
+.navbar .navbar-brand,
+.navbar .navbar-brand img {
+    color: #ffffff !important;
+    /* text/logo stays white */
+    filter: none !important;
+    /* remove any hover-only filter */
+}
+
 /* Admin Dashboard Section */
 .admin-dashboard-section {
-    background-color: #f8f9fa;
+    color: #EEEEEE;
+    background:
+        linear-gradient(rgba(29, 22, 22, 0.5),
+            /* optional softer overlay */
+            rgba(216, 64, 64, 0.55)),
+        url('img/menu img/base.jpg') repeat center center;
+    background-size: contain;
+    background-position: center top;
+    /* adjust as needed */
     min-height: 80vh;
     padding: 3rem 1rem;
 }
 
+.admin-dashboard-section h2 {
+    color: #EEEEEE;
+    font-size: 25px;
+}
+
 /* Dashboard Cards (Top Overview) */
 .dashboard-card {
-    background-color: #fff;
+    background-color: #EEEEEE;
+    color: #8E1616;
     border-radius: 15px;
     padding: 1rem;
     cursor: pointer;
@@ -1034,9 +1211,47 @@ nav {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Card Header */
+.dashboard-card h5 {
+    font-weight: 700;
+    font-size: 25px;
+    margin-bottom: 0.25rem;
+}
+
+/* Card Description */
+.dashboard-card p {
+    font-size: 18px;
+    color: #555555;
+    margin-bottom: 0.5rem;
+}
+
+/* Dashboard Card Icons */
+.dashboard-card i {
+    color: #8E1616;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Custom badge color */
+.badge-custom {
+    background-color: #D84040;
+    color: #FFFFFF;
+    /* text color */
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+    border-radius: 0.5rem;
+}
+
+/* Dashboard Card Hover */
 .dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    /* subtle lift effect */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard Tabs Container */
+.dashboard-tabs-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 /* Tabbed Content */
@@ -1044,14 +1259,376 @@ nav {
     margin-top: 2rem;
 }
 
-.tab-content {
-    background-color: #fff;
-    border-radius: 15px;
+/* Each Section Container */
+.dashboard-section-container {
+    background-color: #EEEEEE;
     padding: 2rem;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Section Header */
+.dashboard-section-header {
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8E1616;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-section-desc {
+    font-size: 1rem;
+    color: #8E1616;
+    margin-bottom: 0;
+}
+
+/* Section Content */
+/* Customer Details (Left Column) */
+.cust-details h5 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #8E1616;
+}
+
+.customer-details {
+    list-style: none;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #ecd9d9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.customer-details li {
+    padding: 0.4rem 0;
+    color: #1D1616;
+    border-bottom: 1px solid #1D1616;
+    font-size: 0.95rem;
+}
+
+.customer-details li:last-child {
+    border-bottom: none;
+}
+
+.customer-details strong {
+    width: 100px;
+    display: inline-block;
+    color: #1D1616;
+}
+
+/* Receipt / Right Column */
+.receipt h5 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #8E1616;
+    text-align: left;
+}
+
+.receipt-card {
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #ecd9d9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Receipt Table Background */
+.receipt-card table {
+    background-color: #ecd9d9;
+    /* overall table */
+}
+
+/* Table header */
+.receipt-card table thead th {
+    background-color: #ecd9d9;
+    /* header bg color */
+    color: #1D1616;
+}
+
+/* Table body rows */
+.receipt-card table tbody tr {
+    background-color: #ecd9d9 !important;
+    /* row bg color override Bootstrap */
+}
+
+.receipt-card table tbody td {
+    background-color: #ecd9d9 !important;
+}
+
+/* Table footer */
+.receipt-card table tfoot th {
+    font-weight: 700;
+    background-color: #ecd9d9;
+}
+
+/* Action Buttons in Receipt */
+.receipt-card .text-end button {
+    margin-left: 0.5rem;
+}
+
+/* Badge Customization */
+.badge-custom {
+    background-color: #D84040;
+    color: #ffffff;
 }
 
 /* Hide inactive tabs */
 .d-none {
     display: none !important;
 }
+
+/* ==================== MENU MANAGEMENT ==================== */
+.menu-mgmt-section {
+    /* nothing fancy, inherit dashboard-section styles */
+}
+
+.menu-mgmt-container {
+    background-color: #EEEEEE;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.menu-mgmt-header {
+    margin-bottom: 2rem;
+}
+
+.menu-mgmt-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8E1616;
+    margin-bottom: 0.5rem;
+}
+
+.menu-mgmt-desc {
+    font-size: 1rem;
+    color: #8E1616;
+    margin-bottom: 0;
+}
+
+/* Category Titles */
+.menu-category-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #8E1616;
+    margin-bottom: 1rem;
+    border: none;
+    /* remove any lines */
+}
+
+/* Row / Column Layout using CSS Grid */
+.menu-mgmt-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    /* space between cards */
+    margin-bottom: 2rem;
+}
+
+/* Cards */
+.menu-mgmt-card,
+.menu-mgmt-extra-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+}
+
+.menu-mgmt-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    color: #8E1616;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.9rem;
+    color: #333333;
+    margin-bottom: 0.75rem;
+}
+
+.fw-bold {
+    font-size: 1rem;
+    color: #1D1616;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.card-btns {
+    display: flex;
+    justify-content: flex-start;
+    /* aligned left, can change to center if needed */
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.card-btns .btn {
+    flex: 1;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    border-radius: 6px;
+}
+
+
+/* ==================== ADMIN GENERAL NAVBAR ==================== */
+.admin-navbar {
+    background-color: #1D1616;
+}
+
+.admin-navbar-brand {
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.admin-navbar-brand:hover {
+    color: #fff;
+}
+
+.admin-nav-link {
+    color: #EEEEEE;
+}
+
+.admin-nav-link:hover {
+    color: #D84040;
+}
+
+/* Logo size */
+.admin-logo-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+/* ===================== ADMIN GENERAL FOOTER ===================== */
+.admin-footer {
+    background-color: #1D1616;
+    color: #FFFFFF;
+    padding: 30px 0;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.95rem;
+}
+
+.admin-footer a {
+    color: #EEEEEE;
+    text-decoration: none;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+}
+
+.admin-footer a:hover {
+    color: #D84040;
+}
+
+/* Optional small text for admin footer */
+.admin-footer small {
+    display: block;
+    margin-top: 10px;
+    color: #CCCCCC;
+}
+
+/* ======================================================== END OF ADMIN DASHBOARD ========================================================= */
+/* ======================================================== ADMIN RESERVATIONS ========================================================= */
+/*
+  ██   █████  ██   ██ ██████ ██   ██     ██████  ██████  █████ 
+ ████  ██  ██ ███ ███   ██   ███  ██     ██   ██ ██     ██     
+██  ██ ██   ██ ███████   ██   ████ ██     ██████  █████   ████  
+██████ ██   ██ ██ █ ██   ██   ██ ████     ██ ██   ██         ██ 
+██  ██ ██  ██  ██   ██   ██   ██  ███     ██  ██  ██         ██ 
+██  ██ █████   ██   ██ ██████ ██   ██     ██   ██ ██████ █████  
+                                                           
+*/
+
+/* ==========================================
+   Admin Reservations Page Styling
+========================================== */
+.admin-res {
+    padding: 2rem 0;
+    background-image:url("img/index img/gallery3.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+/* Page header */
+.admin-res .admin-res-title {
+    font-size: 25px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+/* Main Card */
+.admin-res .admin-res-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    padding: 2rem;
+    color: #fff;
+}
+
+/* Calendar Placeholder */
+.admin-res .admin-res-calendar {
+    background-color: #2a2a2a;
+    border: 2px dashed #555;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Add/Remove Reservation Buttons */
+.admin-res .admin-res-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.admin-res .admin-res-actions .btn {
+    font-weight: 600;
+}
+
+/* Footer within this section only (if needed) */
+.admin-res footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: #ccc;
+}
+
+/* Responsive for this section only */
+@media (max-width: 768px) {
+    .admin-res .admin-res-title {
+        font-size: 2.2rem;
+    }
+}
+
