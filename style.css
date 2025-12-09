@@ -1180,6 +1180,7 @@ nav {
     /* remove any hover-only filter */
 }
 
+
 /* Admin Dashboard Section */
 .admin-dashboard-section {
     color: #EEEEEE;
@@ -1445,6 +1446,16 @@ nav {
     width: 100%;
     height: 180px;
     object-fit: cover;
+}
+
+/* Make size labels & prices readable inside admin menu cards */
+.menu-mgmt-card ul.list-unstyled {
+    font-size: 0.95rem;
+}
+
+.menu-mgmt-card ul.list-unstyled li > span,
+.menu-mgmt-card ul.list-unstyled li strong {
+    color: #1D1616;
 }
 
 .card-body {

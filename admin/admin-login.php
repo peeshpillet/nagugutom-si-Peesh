@@ -1,3 +1,65 @@
+<?php
+// admin/admin-login.php - Admin login (email + password, optional branch)
+
+session_start();
+require_once "../config.php";
+
+// If already logged in, send straight to dashboard
+if (isset($_SESSION['admin_id'])) {
+    header("Location: admin-dash.php");
+    exit;
+}
+
+$error = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Read and sanitize input
+    $email    = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+    $branch   = trim($_POST['branch'] ?? '');
+
+    if ($email === '' || $password === '') {
+        $error = "Please enter both email and password.";
+    } else {
+        // Look up admin by email from `admins` table
+        $stmt = $mysqli->prepare("
+            SELECT admin_id, name, email, branch, password
+            FROM admins
+            WHERE email = ?
+            LIMIT 1
+        ");
+
+        if (!$stmt) {
+            $error = "Database error. Please try again later.";
+        } else {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($row = $result->fetch_assoc()) {
+                // NOTE: plain-text password comparison, per current design
+                if ($password === $row['password']) {
+                    // Login OK → store in session
+                    $_SESSION['admin_id']     = $row['admin_id'];
+                    $_SESSION['admin_name']   = $row['name'];
+                    $_SESSION['admin_email']  = $row['email'];
+                    // Use selected branch if given, otherwise DB branch
+                    $_SESSION['admin_branch'] = $branch !== '' ? $branch : $row['branch'];
+
+                    header("Location: admin-dash.php");
+                    exit;
+                } else {
+                    $error = "Invalid password.";
+                }
+            } else {
+                $error = "Admin account not found for that email.";
+            }
+
+            $stmt->close();
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +93,9 @@
                     Ramen Naijiro
                 </a>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="admin-nav-link nav-link" href="../index.html">Customer Home</a></li>
+                    <li class="nav-item">
+                        <a class="admin-nav-link nav-link" href="../index.html">Customer Home</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -41,30 +105,54 @@
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="admin-login-card">
                     <h3>Admin Login</h3>
-                    <form>
+
+                    <?php if (!empty($error)): ?>
+                        <div class="alert alert-danger py-2">
+                            <?php echo htmlspecialchars($error); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <form method="post" action="">
                         <!-- Email -->
                         <div class="mb-3">
                             <label for="adminEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="adminEmail" placeholder="admin@naijiro.com">
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="adminEmail"
+                                name="email"
+                                placeholder="admin@naijiro.com"
+                                value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>"
+                                required
+                            >
                         </div>
 
-                        <!-- Branch Dropdown -->
+                        <!-- Branch Dropdown (optional override) -->
                         <div class="mb-3">
                             <label for="adminBranch" class="form-label">Branch</label>
-                            <select class="form-select" id="adminBranch">
-                                <option selected disabled>Select a branch</option>
-                                <option value="main">Main Branch</option>
-                                <option value="east">East Branch</option>
-                                <option value="west">West Branch</option>
-                                <option value="north">North Branch</option>
-                                <option value="south">South Branch</option>
+                            <select class="form-select" id="adminBranch" name="branch">
+                                <option value="" <?php echo empty($branch) ? 'selected' : ''; ?>>
+                                    Use default branch
+                                </option>
+                                <option value="Main Branch"  <?php echo (isset($branch) && $branch === 'Main Branch')  ? 'selected' : ''; ?>>Main Branch</option>
+                                <option value="East Branch"  <?php echo (isset($branch) && $branch === 'East Branch')  ? 'selected' : ''; ?>>East Branch</option>
+                                <option value="West Branch"  <?php echo (isset($branch) && $branch === 'West Branch')  ? 'selected' : ''; ?>>West Branch</option>
+                                <option value="North Branch" <?php echo (isset($branch) && $branch === 'North Branch') ? 'selected' : ''; ?>>North Branch</option>
+                                <option value="South Branch" <?php echo (isset($branch) && $branch === 'South Branch') ? 'selected' : ''; ?>>South Branch</option>
                             </select>
                         </div>
 
                         <!-- Password -->
                         <div class="mb-3">
                             <label for="adminPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="adminPassword" placeholder="********">
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="adminPassword"
+                                name="password"
+                                placeholder="********"
+                                required
+                            >
                         </div>
 
                         <!-- Login Button -->
@@ -80,10 +168,11 @@
         <footer class="text-white py-4 mt-auto">
             <div class="container text-center">
                 <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
-                <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none"><i
-                        class="fa-brands fa-facebook"></i></a><br>
-                <a href="admin/admin-login.html">Admin Login</a>
-                <a href="contact-us.html">Contact Us</a>
+                <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none">
+                    <i class="fa-brands fa-facebook"></i>
+                </a><br>
+                <a href="admin-login.php">Admin Login</a>
+                <a href="../contact-us.html">Contact Us</a>
             </div>
         </footer>
 
