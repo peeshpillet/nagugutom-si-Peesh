@@ -13,7 +13,7 @@ require_once "../config.php";
 
 // Logged-in admin info
 $admin_name   = $_SESSION['admin_name']   ?? 'Admin';
-$admin_branch = $_SESSION['admin_branch'] ?? 'Main Branch';
+$admin_branch = $_SESSION['admin_branch'] ?? 'General Trias';
 
 // ---------------------- Handle menu actions (availability + edits) ----------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -72,10 +72,16 @@ $orders         = [];
 $selected_order = null;
 
 $stmt = $mysqli->prepare("
-    SELECT order_id, name, contact_number, branch, food, date
+    SELECT 
+        order_id,
+        customer_name  AS name,
+        customer_phone AS contact_number,
+        branch_name    AS branch,
+        cart_json,
+        created_at     AS date
     FROM orders
-    WHERE branch = ?
-    ORDER BY date DESC
+    WHERE branch_name = ?
+    ORDER BY created_at DESC
     LIMIT 10
 ");
 if ($stmt) {
@@ -103,6 +109,23 @@ if ($orders_count > 0) {
     }
     if ($selected_order === null) {
         $selected_order = $orders[0];
+    }
+}
+
+// Build a simple "Items summary" text from cart_json for the selected order
+$selected_order_food_summary = '';
+if ($selected_order && !empty($selected_order['cart_json'])) {
+    $snap = json_decode($selected_order['cart_json'], true);
+    if (is_array($snap) && !empty($snap['items'])) {
+        $parts = [];
+        foreach ($snap['items'] as $item) {
+            $qty  = (int)($item['qty'] ?? 1);
+            $name = $item['name'] ?? 'Item';
+            $size = $item['size'] ?? '';
+            $label = $name . ($size ? ' (' . $size . ')' : '');
+            $parts[] = $qty . 'x ' . $label;
+        }
+        $selected_order_food_summary = implode(", ", $parts);
     }
 }
 
@@ -204,12 +227,18 @@ $categoryMeta = [
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="../index.html">
+            <a class="navbar-brand fw-bold" href="../index.php">
                 <img src="../img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle"
                      style="width:50px; height:50px; object-fit:cover; border-radius:50%; margin-right:10px;">
                 Ramen Naijiro
             </a>
             <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <span class="nav-link disabled text-light small">
+                        <?php echo htmlspecialchars($admin_name); ?> (<?php echo htmlspecialchars($admin_branch); ?>)
+                    </span>
+                </li>
 
                 <li class="nav-item"><a class="nav-link active" href="admin-dash.php">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="admin-res.php">Reservations</a></li>
@@ -326,12 +355,16 @@ $categoryMeta = [
                                     <h5>Order Summary</h5>
                                     <div class="receipt-card p-3 rounded shadow-sm">
                                         <?php if ($selected_order): ?>
-                                            <p><strong>Items / Notes:</strong></p>
+                                            <p><strong>Items:</strong></p>
                                             <p class="mb-3">
-                                                <?php echo nl2br(htmlspecialchars($selected_order['food'])); ?>
+                                                <?php
+                                                echo $selected_order_food_summary
+                                                    ? nl2br(htmlspecialchars($selected_order_food_summary))
+                                                    : '<span class="text-muted">No items found for this order.</span>';
+                                                ?>
                                             </p>
 
-                                            <!-- Action Buttons (no backend yet) -->
+                                            <!-- Action Buttons (to be wired later) -->
                                             <div class="text-end mt-2">
                                                 <button class="btn btn-sm btn-primary">View</button>
                                                 <button class="btn btn-sm btn-danger">Cancel</button>
@@ -376,7 +409,6 @@ $categoryMeta = [
                                                 <?php
                                                 // Show images for ramen and sides; extras are text-only
                                                 $showImage = (in_array($slug, ['ramen', 'sides'], true) && !empty($item['image_path']));
-
                                                 ?>
                                                 <?php if ($showImage): ?>
                                                     <img src="<?php echo htmlspecialchars($item['image_path']); ?>"
@@ -476,7 +508,7 @@ $categoryMeta = [
                 <i class="fa-brands fa-facebook"></i>
             </a><br>
             <a href="admin-login.php">Admin Login</a>
-            <a href="../contact-us.html">Contact Us</a>
+            <a href="../contact-us.php">Contact Us</a>
         </div>
     </footer>
 
@@ -538,5 +570,4 @@ $categoryMeta = [
     </script>
 
 </body>
-
 </html>

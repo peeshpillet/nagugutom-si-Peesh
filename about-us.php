@@ -24,15 +24,15 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <img src="img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle">
                 Ramen Naijiro
             </a>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link active" href="about-us.html">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-                <li class="nav-item"><a class="nav-link" href="track.html">Track Order</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="about-us.php">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="track.php">Track Order</a></li>
                 <li class="nav-item ms-3">
                     <button class="btn btn-warning"><i class="fa-solid fa-bag-shopping me-1"></i> Order Now</button>
                 </li>
@@ -165,8 +165,8 @@
             <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
             <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none"><i
                     class="fa-brands fa-facebook"></i></a><br>
-            <a href="admin/admin-login.html">Admin Login</a>
-            <a href="contact-us.html">Contact Us</a>
+            <a href="admin/admin-login.php">Admin Login</a>
+            <a href="contact-us.php">Contact Us</a>
         </div>
     </footer>
     

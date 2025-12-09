@@ -30,10 +30,10 @@
                 Ramen Naijiro
             </a>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
-                <li class="nav-item"><a class="nav-link active" href="menu.html">Menu</a></li>
-                <li class="nav-item"><a class="nav-link" href="track-order.html">Track Order</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="menu.php">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="track-order.php">Track Order</a></li>
                 <li class="nav-item ms-3">
                     <button class="btn btn-warning"><i class="fa-solid fa-bag-shopping me-1"></i> Order Now</button>
                 </li>
@@ -97,88 +97,81 @@
         <div class="p-3 border-top">
             <p class="fw-bold">Total: ₱<span id="cart-total">0</span></p>
             <!-- Checkout Button with Bootstrap width + custom class -->
-            <button class="btn side-cart-btn w-100">Checkout</button>
+            <button class="btn side-cart-btn w-100" id="checkout-btn">Checkout</button>
         </div>
     </div>
 
-    <!-- BRANCH SELECTION & MAP SECTION -->
+    <!-- AREA COVERAGE CHECK -->
     <section class="branch-form-section py-5">
         <div class="container">
-            <h2 class="text-center mb-4">Order From Your Preferred Branch</h2>
-    
-            <div class="row justify-content-center align-items-start">
-                <!-- Form Column -->
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <form id="branchOrderForm">
-                        <div class="mb-3">
-                            <label for="branchSelect" class="form-label">Select Branch</label>
-                            <select class="form-select" id="branchSelect" required>
-                                <option value="" disabled selected>Choose a branch</option>
-                                <option value="Branch 1 - Downtown">Branch 1 - Downtown</option>
-                                <option value="Branch 2 - Uptown">Branch 2 - Uptown</option>
-                                <option value="Branch 3 - Midtown">Branch 3 - Midtown</option>
-                            </select>
-                        </div>
-    
-                        <div class="mb-3">
-                            <label for="customerName" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="customerName" placeholder="Full Name" required>
-                        </div>
-    
-                        <div class="mb-3">
-                            <label for="customerPhone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="customerPhone" placeholder="09XXXXXXXXX" required>
-                        </div>
-    
-                        <div class="mb-3">
-                            <label for="customerNotes" class="form-label">Notes (Optional)</label>
-                            <textarea class="form-control" id="customerNotes" rows="2"
-                                placeholder="Any special instructions?"></textarea>
-                        </div>
-    
-                        <button type="submit" class="btn btn-warning w-100">Confirm Branch & Continue</button>
-                    </form>
-                </div>
-    
-                <!-- Map & Info Column -->
-                <div class="col-lg-6 col-md-6">
-                    <div class="map-placeholder"
-                        style="width:100%;height:400px;background-color:#ddd;border-radius:12px;display:flex;align-items:center;justify-content:center;">
-                        <p class="text-muted">Map will appear here based on selected branch</p>
+            <div class="card border-0 shadow-sm p-4">
+                <h2 class="text-center mb-3 text-uppercase fw-bold">
+                    CHECK TO SEE IF WE DELIVER IN YOUR AREA
+                </h2>
+
+                <form id="coverageForm" class="row g-3 align-items-center justify-content-center">
+
+                    <!-- Province -->
+                    <div class="col-md-3">
+                        <select class="form-select" id="province-select">
+                            <option value="" selected disabled>Province</option>
+                            <!-- options filled by JS -->
+                        </select>
                     </div>
-                    <!-- Branch Info -->
-                    <div class="branch-info mt-3 text-center">
-                        <p class="branch-address fw-bold"></p>
-                        <p class="branch-eta text-muted"></p>
+
+                    <!-- City / Municipality -->
+                    <div class="col-md-3">
+                        <select class="form-select" id="city-select" disabled>
+                            <option value="" selected disabled>City / Municipality</option>
+                        </select>
                     </div>
-                </div>
+
+                    <!-- Barangay / Subdivision -->
+                    <div class="col-md-3">
+                        <select class="form-select" id="barangay-select" disabled>
+                            <option value="" selected disabled>Barangay / Subdivision</option>
+                        </select>
+                    </div>
+
+                    <!-- Delivery / Pick-up -->
+                    <div class="col-md-2 d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="coverage-order-type"
+                                   id="cov-delivery" value="Delivery" checked>
+                            <label class="form-check-label" for="cov-delivery">Delivery</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="coverage-order-type"
+                                   id="cov-pickup" value="Pickup">
+                            <label class="form-check-label" for="cov-pickup">Pick-up</label>
+                        </div>
+                    </div>
+
+                    <!-- Change My Location button -->
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-warning w-100" id="change-location-btn">
+                            Change My Location
+                        </button>
+                    </div>
+
+                    <!-- Hidden fields to feed checkout later -->
+                    <input type="hidden" id="selected-branch-id">
+                    <input type="hidden" id="selected-branch-name">
+                    <input type="hidden" id="selected-province">
+                    <input type="hidden" id="selected-city">
+                    <input type="hidden" id="selected-barangay">
+                    <input type="hidden" id="delivery-allowed" value="0">
+                </form>
+
+                <div id="coverage-result" class="text-center small mt-3"></div>
+
+                <p class="text-center text-muted small mt-2 mb-0">
+                    Can’t find your location? You might want to try our Pick up option instead
+                    or contact your nearest Ramen Naijiro branch.
+                </p>
             </div>
         </div>
     </section>
-    
-    
-    
-    <!-- OPTIONAL JS for Form -->
-    <script>
-        const form = document.getElementById('branchOrderForm');
-        const mapPlaceholder = document.querySelector('.map-placeholder');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const branch = document.getElementById('branchSelect').value;
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            const notes = document.getElementById('customerNotes').value;
-
-            // Placeholder: display selected branch on the map box
-            mapPlaceholder.innerHTML = `<p class="text-dark">Showing map for <strong>${branch}</strong></p>`;
-
-            console.log({ branch, name, phone, notes });
-            alert(`Branch selected: ${branch}\nThank you, ${name}!`);
-        });
-    </script>
-    
 
 
 
@@ -380,21 +373,10 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-dark text-white py-4 mt-auto">
-        <div class="container text-center">
-            <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
-            <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none"><i
-                    class="fa-brands fa-facebook"></i></a><br>
-            <a href="admin/admin-login.html">Admin Login</a>
-            <a href="contact-us.html">Contact Us</a>
-        </div>
-        </footer>
-
-    <!-- Bootstrap JS Bundle -->
+        <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="menu-cart.js"></script>
-</body>
 
+    <script src="menu-cart.js"></script>
+    <script src="map.js"></script>
+</body>
 </html>

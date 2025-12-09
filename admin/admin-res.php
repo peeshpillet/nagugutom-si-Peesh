@@ -13,23 +13,24 @@ require_once "../config.php";
 
 // Logged-in admin info
 $admin_name   = $_SESSION['admin_name']   ?? 'Admin';
-$admin_branch = $_SESSION['admin_branch'] ?? 'Main Branch';
+$admin_branch = $_SESSION['admin_branch'] ?? 'General Trias';
 
 $success = "";
 $error   = "";
 
-// Branch choices (for dropdown)
+// Branch choices (sync with contact-us + admin-login)
 $BRANCHES = [
-    'Main Branch',
-    'East Branch',
-    'West Branch',
-    'North Branch',
-    'South Branch'
+    'General Trias',
+    'Dasmariñas',
+    'Odasiba',
+    'Marikina',
+    'Cainta'
 ];
 
-/**
- * Generate a reservation code like RS-5FFD62
- */
+// For the "Add Reservation" form, default to the admin's branch if it matches
+$defaultBranchForForm = in_array($admin_branch, $BRANCHES, true) ? $admin_branch : '';
+
+// Generate a reservation code like RS-5FFD62
 function generateReservationCode() {
     $prefix = "RS-";
     $random = strtoupper(bin2hex(random_bytes(3))); // 6 hex chars → 5A7B2D
@@ -159,18 +160,17 @@ $unique_dates = array_keys($reservations_by_date);
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="../index.html">
+            <a class="navbar-brand fw-bold" href="../index.php">
                 <img src="../img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle"
                      style="width:50px; height:50px; object-fit:cover; border-radius:50%; margin-right:10px;">
                 Ramen Naijiro
             </a>
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                </li>
-                <li class="nav-item"><a class="nav-link active" href="admin-dash.php">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="admin-res.php">Reservations</a></li>
+                <li class="nav-item"></li>
+                <li class="nav-item"><a class="nav-link" href="admin-dash.php">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link active" href="admin-res.php">Reservations</a></li>
                 <li class="nav-item"><a class="nav-link text-danger" href="logout.php">
-                <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </a></li>
             </ul>
         </div>
@@ -306,9 +306,14 @@ $unique_dates = array_keys($reservations_by_date);
                     <div class="col-md-2">
                         <label class="form-label">Branch</label>
                         <select name="branch" class="form-select" required>
-                            <option value="" disabled selected>Select branch</option>
+                            <option value="" disabled <?php echo $defaultBranchForForm === '' ? 'selected' : ''; ?>>
+                                Select branch
+                            </option>
                             <?php foreach ($BRANCHES as $b): ?>
-                                <option value="<?php echo htmlspecialchars($b); ?>">
+                                <option
+                                    value="<?php echo htmlspecialchars($b); ?>"
+                                    <?php echo ($b === $defaultBranchForForm) ? 'selected' : ''; ?>
+                                >
                                     <?php echo htmlspecialchars($b); ?>
                                 </option>
                             <?php endforeach; ?>
@@ -365,7 +370,7 @@ $unique_dates = array_keys($reservations_by_date);
                 <i class="fa-brands fa-facebook"></i>
             </a><br>
             <a href="admin-login.php">Admin Login</a>
-            <a href="../contact-us.html">Contact Us</a>
+            <a href="../contact-us.php">Contact Us</a>
         </div>
     </footer>
 

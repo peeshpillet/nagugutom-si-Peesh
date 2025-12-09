@@ -177,5 +177,107 @@ function setupAddToOrderButtons(sectionSelector, hasExtras = false) {
 setupAddToOrderButtons('.ramen-section', true);  // ramen has extras
 setupAddToOrderButtons('.apps-section', false);  // sides have no extras
 
+// ---------------------- Checkout → checkout.php ----------------------
+
+const checkoutBtn = document.getElementById('checkout-btn');
+
+function getSelectedRadioValue(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : null;
+}
+
+function buildOrderSnapshot() {
+    const items = [];
+
+    // Collect cart items
+    cartItems.querySelectorAll('.list-group-item').forEach(li => {
+        const name = li.getAttribute('data-name') || '';
+        const selects = li.querySelectorAll('select');
+        const size = selects[0] ? selects[0].value : null;
+        const extras = selects[1] ? selects[1].value : null;
+        const qtyEl = li.querySelector('.item-qty');
+        const qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+        const lineTotal = parseInt(li.getAttribute('data-price')) || 0;
+
+        items.push({
+            name,
+            size,
+            extras,
+            qty,
+            line_total: lineTotal
+        });
+    });
+
+    // Cart total (as shown)
+    const total = parseInt(cartTotal.textContent) || 0;
+
+    // Side-cart order type & payment
+    const orderType = getSelectedRadioValue('order-type');         // Pickup / Delivery
+    const paymentMethod = getSelectedRadioValue('payment-method'); // GCash / Cash
+
+    // Coverage bar location + branch (from map.js logic)
+    const branchId = document.getElementById('selected-branch-id')?.value || '';
+    const branchName = document.getElementById('selected-branch-name')?.value || '';
+    const province = document.getElementById('selected-province')?.value || '';
+    const city = document.getElementById('selected-city')?.value || '';
+    const barangay = document.getElementById('selected-barangay')?.value || '';
+    const deliveryAllowed = document.getElementById('delivery-allowed')?.value || '0';
+
+    return {
+        items,
+        total,
+        orderType,
+        paymentMethod,
+        location: {
+            province,
+            city,
+            barangay,
+            branchId,
+            branchName,
+            deliveryAllowed
+        },
+        createdAt: new Date().toISOString()
+    };
+}
+
+checkoutBtn?.addEventListener('click', () => {
+    // Prevent checkout if cart empty
+    const itemsInCart = cartItems.querySelectorAll('.list-group-item').length;
+    if (itemsInCart === 0) {
+        alert('Your cart is empty. Please add items before checking out.');
+        return;
+    }
+
+    // For Delivery, make sure a service area + branch was chosen
+    const orderType = getSelectedRadioValue('order-type');
+    const branchId = document.getElementById('selected-branch-id')?.value || '';
+    const deliveryAllowed = document.getElementById('delivery-allowed')?.value || '0';
+
+    if (orderType === 'Delivery') {
+        if (!branchId) {
+            alert('Please check if we deliver to your area first.');
+            return;
+        }
+        if (deliveryAllowed === '0') {
+            alert('We cannot deliver to this area. Please try Pick-up instead.');
+            return;
+        }
+    }
+
+    const snapshot = buildOrderSnapshot();
+
+    try {
+        localStorage.setItem('rn_current_order', JSON.stringify(snapshot));
+    } catch (e) {
+        console.error('Failed to store order in localStorage:', e);
+        alert('There was a problem preparing your checkout. Please try again.');
+        return;
+    }
+
+    // Go to checkout page
+    window.location.href = 'checkout.php';
+});
+
+
 
 
