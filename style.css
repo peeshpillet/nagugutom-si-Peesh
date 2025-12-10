@@ -22,6 +22,31 @@ body {
 
 }
 
+/* Override Bootstrap .active list group behavior */
+.recent-order-item.active {
+    background-color: #0d6efd !important;   /* or any highlight color */
+    color: #fff !important;
+}
+
+/* But inside the link, we want readable text when NOT active */
+.recent-order-item span,
+.recent-order-item small {
+    color: #212529 !important;
+}
+
+/* Fix active <a> being forced white by Bootstrap */
+.recent-order-item.active a,
+.recent-order-item.active span,
+.recent-order-item.active small {
+    color: #fff !important;
+}
+
+/* Non-active link should be dark, even inside list item */
+.recent-order-item a {
+    color: #212529 !important;
+}
+
+
 /* Global button styles */
 button,
 a.btn,

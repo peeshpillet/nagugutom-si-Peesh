@@ -230,7 +230,7 @@ $branches = [
 
                 <p class="mt-3 small">
                     For directions and delivery coverage, you can also message us on our
-                    <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none">
+                    <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-decoration-none">
                         Facebook page
                     </a>.
                 </p>

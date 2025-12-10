@@ -1,17 +1,8 @@
 <?php
-// admin/admin-login.php - Admin login (email + password, optional branch)
+// admin/admin-login.php - Admin login (email + password, branch tied to account)
 
 session_start();
 require_once "../config.php";
-
-// Centralized branch list (same as contact-us + admin-res)
-$BRANCHES = [
-    'General Trias',
-    'Dasmariñas',
-    'Odasiba',
-    'Marikina',
-    'Cainta'
-];
 
 // If already logged in, send straight to dashboard
 if (isset($_SESSION['admin_id'])) {
@@ -25,14 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Read and sanitize input
     $email    = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
-    $branch   = trim($_POST['branch'] ?? '');
 
     if ($email === '' || $password === '') {
         $error = "Please enter both email and password.";
     } else {
         // Look up admin by email from `admins` table
         $stmt = $mysqli->prepare("
-            SELECT admin_id, name, email, branch, password
+            SELECT admin_id, name, email, branch_id, branch_name, password
             FROM admins
             WHERE email = ?
             LIMIT 1
@@ -46,20 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $stmt->get_result();
 
             if ($row = $result->fetch_assoc()) {
-                // NOTE: plain-text password comparison, per current design
+                // NOTE: plain-text password comparison (per current setup)
                 if ($password === $row['password']) {
                     // Login OK → store in session
-                    $_SESSION['admin_id']    = $row['admin_id'];
-                    $_SESSION['admin_name']  = $row['name'];
-                    $_SESSION['admin_email'] = $row['email'];
-
-                    // If user picked a branch and it's valid, use that.
-                    // Otherwise, fall back to whatever is stored in DB.
-                    if ($branch !== '' && in_array($branch, $BRANCHES, true)) {
-                        $_SESSION['admin_branch'] = $branch;
-                    } else {
-                        $_SESSION['admin_branch'] = $row['branch'] ?: 'General Trias';
-                    }
+                    $_SESSION['admin_id']        = $row['admin_id'];
+                    $_SESSION['admin_name']      = $row['name'];
+                    $_SESSION['admin_email']     = $row['email'];
+                    $_SESSION['admin_branch_id'] = $row['branch_id'];   // for filtering orders
+                    $_SESSION['admin_branch']    = $row['branch_name']; // for display (navbar, etc.)
 
                     header("Location: admin-dash.php");
                     exit;
@@ -75,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,25 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>"
                                 required
                             >
-                        </div>
-
-                        <!-- Branch Dropdown (optional override) -->
-                        <div class="mb-3">
-                            <label for="adminBranch" class="form-label">Branch (optional)</label>
-                            <select class="form-select" id="adminBranch" name="branch">
-                                <option value=""
-                                    <?php echo (empty($branch) ? 'selected' : ''); ?>>
-                                    Use account's default branch
-                                </option>
-                                <?php foreach ($BRANCHES as $b): ?>
-                                    <option
-                                        value="<?php echo htmlspecialchars($b); ?>"
-                                        <?php echo (isset($branch) && $branch === $b) ? 'selected' : ''; ?>
-                                    >
-                                        <?php echo htmlspecialchars($b); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
                         </div>
 
                         <!-- Password -->

@@ -165,6 +165,13 @@ if ($isPaymongoReturn) {
                         'items'           => $items,
                     ];
 
+                    // Build track link + QR code using public track-order page
+                    $scheme   = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+                    $host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
+                    $basePath = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                    $order['track_url']    = $scheme . '://' . $host . $basePath . '/track-order.php?code=' . urlencode($tracking_code);
+                    $order['track_qr_url'] = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' . urlencode($order['track_url']);
+
                     // Save for refresh-safe display, clear pending_order
                     $_SESSION['last_order']   = $order;
                     unset($_SESSION['pending_order']);
@@ -254,8 +261,16 @@ if ($isPaymongoReturn) {
                                             </span>
                                         </div>
                                         <p class="small text-muted mt-2 mb-0">
-                                            Use this on <a href="track-order.php">Track Order</a> to check status.
+                                            Use this on <a href="<?php echo htmlspecialchars($order['track_url']); ?>">Track Order</a> to check status,
+                                            or scan the QR code below.
                                         </p>
+                                        <div class="mt-2">
+                                            <p class="small text-muted mb-1">Scan to track on another device:</p>
+                                            <img src="<?php echo htmlspecialchars($order['track_qr_url']); ?>"
+                                                 alt="QR code to track this order"
+                                                 class="img-fluid border rounded"
+                                                 style="max-width: 150px;">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -393,7 +408,7 @@ if ($isPaymongoReturn) {
 
                                 <!-- Bottom buttons -->
                                 <div class="mt-4 d-flex flex-wrap gap-2 justify-content-between justify-content-md-end">
-                                    <a href="track-order.php" class="btn btn-outline-dark btn-sm">
+                                    <a href="<?php echo htmlspecialchars($order['track_url']); ?>" class="btn btn-outline-dark btn-sm">
                                         <i class="fa-solid fa-truck-fast me-1"></i>
                                         Track this order
                                     </a>

@@ -89,7 +89,7 @@
     
             <!-- Customer Notes -->
             <div class="mb-3">
-                <label for="customer-notes" class="form-label fw-bold">Notes for the Owner:</label>
+                <label for="customer-notes" class="form-label fw-bold">Notes:</label>
                 <textarea class="form-control" id="customer-notes" rows="2" placeholder="Leave a note..."></textarea>
             </div>
         </div>
@@ -105,7 +105,7 @@
     <section class="branch-form-section py-5">
         <div class="container">
             <div class="card border-0 shadow-sm p-4">
-                <h2 class="text-center mb-3 text-uppercase fw-bold">
+                <h2 class="text-center mb-3 text-uppercase fw-bold text-black">
                     CHECK TO SEE IF WE DELIVER IN YOUR AREA
                 </h2>
 

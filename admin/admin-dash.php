@@ -12,80 +12,142 @@ if (!isset($_SESSION['admin_id'])) {
 require_once "../config.php";
 
 // Logged-in admin info
-$admin_name   = $_SESSION['admin_name']   ?? 'Admin';
-$admin_branch = $_SESSION['admin_branch'] ?? 'General Trias';
+$admin_name      = $_SESSION['admin_name']      ?? 'Admin';
+$admin_branch    = $_SESSION['admin_branch']    ?? 'General Trias';
+$admin_branch_id = $_SESSION['admin_branch_id'] ?? null;
 
-// ---------------------- Handle menu actions (availability + edits) ----------------------
+// Status helpers (labels + badge classes)
+$STATUS_LABELS = [
+    'pending'          => 'Pending',
+    'preparing'        => 'Preparing',
+    'out_for_delivery' => 'Out for Delivery',
+    'completed'        => 'Completed',
+    'cancelled'        => 'Cancelled',
+];
+
+$STATUS_BADGE_CLASS = [
+    'pending'          => 'bg-secondary',
+    'preparing'        => 'bg-secondary',
+    'out_for_delivery' => 'bg-primary',
+    'completed'        => 'bg-success',
+    'cancelled'        => 'bg-danger',
+];
+
+// ---------------------- Handle POST actions (orders + menu) ----------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $menu_action = $_POST['menu_action'] ?? '';
 
-    if ($menu_action === 'toggle_item') {
-        $item_id    = (int) ($_POST['item_id'] ?? 0);
-        $new_status = (int) ($_POST['new_status'] ?? 1);
+    // 1) Order actions (status updates)
+    if (isset($_POST['order_action']) && $_POST['order_action'] === 'update_status') {
+        $order_id   = (int) ($_POST['order_id'] ?? 0);
+        $new_status = $_POST['new_status'] ?? '';
 
-        if ($item_id > 0) {
-            $stmt = $mysqli->prepare("UPDATE menu_items SET is_available = ? WHERE item_id = ?");
-            if ($stmt) {
-                $stmt->bind_param("ii", $new_status, $item_id);
-                $stmt->execute();
-                $stmt->close();
-            }
-        }
-    } elseif ($menu_action === 'toggle_size') {
-        $size_id    = (int) ($_POST['size_id'] ?? 0);
-        $new_status = (int) ($_POST['new_status'] ?? 1);
+        $allowed_statuses = [
+            'pending',
+            'preparing',
+            'out_for_delivery',
+            'completed',
+            'cancelled'
+        ];
 
-        if ($size_id > 0) {
-            $stmt = $mysqli->prepare("UPDATE menu_item_sizes SET is_available = ? WHERE size_id = ?");
-            if ($stmt) {
-                $stmt->bind_param("ii", $new_status, $size_id);
-                $stmt->execute();
-                $stmt->close();
-            }
-        }
-    } elseif ($menu_action === 'update_size') {
-        $size_id    = (int) ($_POST['size_id'] ?? 0);
-        $new_price  = (float) ($_POST['new_price'] ?? 0);
-        $new_status = (int) ($_POST['new_status'] ?? 1);
-
-        if ($size_id > 0) {
+        if ($order_id > 0 && in_array($new_status, $allowed_statuses, true)) {
             $stmt = $mysqli->prepare("
-                UPDATE menu_item_sizes
-                   SET price = ?, is_available = ?
-                 WHERE size_id = ?
+                UPDATE orders
+                   SET status = ?, updated_at = NOW()
+                 WHERE order_id = ?
             ");
             if ($stmt) {
-                $stmt->bind_param("dii", $new_price, $new_status, $size_id);
+                $stmt->bind_param("si", $new_status, $order_id);
                 $stmt->execute();
                 $stmt->close();
             }
         }
+
+        // keep selected order focused after update
+        header("Location: admin-dash.php?order_id=" . $order_id);
+        exit;
     }
 
-    // Redirect back to avoid form resubmission on refresh
-    header("Location: admin-dash.php");
-    exit;
+    // 2) Menu actions (availability + edits)
+    if (isset($_POST['menu_action'])) {
+        $menu_action = $_POST['menu_action'] ?? '';
+
+        if ($menu_action === 'toggle_item') {
+            $item_id    = (int) ($_POST['item_id'] ?? 0);
+            $new_status = (int) ($_POST['new_status'] ?? 1);
+
+            if ($item_id > 0) {
+                $stmt = $mysqli->prepare("UPDATE menu_items SET is_available = ? WHERE item_id = ?");
+                if ($stmt) {
+                    $stmt->bind_param("ii", $new_status, $item_id);
+                    $stmt->execute();
+                    $stmt->close();
+                }
+            }
+        } elseif ($menu_action === 'toggle_size') {
+            $size_id    = (int) ($_POST['size_id'] ?? 0);
+            $new_status = (int) ($_POST['new_status'] ?? 1);
+
+            if ($size_id > 0) {
+                $stmt = $mysqli->prepare("UPDATE menu_item_sizes SET is_available = ? WHERE size_id = ?");
+                if ($stmt) {
+                    $stmt->bind_param("ii", $new_status, $size_id);
+                    $stmt->execute();
+                    $stmt->close();
+                }
+            }
+        } elseif ($menu_action === 'update_size') {
+            $size_id    = (int) ($_POST['size_id'] ?? 0);
+            $new_price  = (float) ($_POST['new_price'] ?? 0);
+            $new_status = (int) ($_POST['new_status'] ?? 1);
+
+            if ($size_id > 0) {
+                $stmt = $mysqli->prepare("
+                    UPDATE menu_item_sizes
+                       SET price = ?, is_available = ?
+                     WHERE size_id = ?
+                ");
+                if ($stmt) {
+                    $stmt->bind_param("dii", $new_price, $new_status, $size_id);
+                    $stmt->execute();
+                    $stmt->close();
+                }
+            }
+        }
+
+        // Redirect back to avoid form resubmission on refresh
+        header("Location: admin-dash.php");
+        exit;
+    }
 }
 
-// ---------------------- Fetch recent orders for this branch ----------------------
+// ---------------------- Fetch recent orders for this admin's branch ----------------------
 $orders         = [];
 $selected_order = null;
 
 $stmt = $mysqli->prepare("
     SELECT 
         order_id,
-        customer_name  AS name,
-        customer_phone AS contact_number,
-        branch_name    AS branch,
-        cart_json,
-        created_at     AS date
+        order_code,
+        customer_name      AS name,
+        customer_phone     AS contact_number,
+        branch_id          AS branch_id,
+        branch_name        AS branch,
+        address            AS address,
+        order_type         AS order_type,
+        payment_method     AS payment_method,
+        subtotal           AS subtotal,
+        delivery_fee       AS delivery_fee,
+        total_amount       AS total_amount,
+        cart_json          AS cart_json,
+        status             AS status,
+        created_at         AS date
     FROM orders
-    WHERE branch_name = ?
+    WHERE branch_id = ?
     ORDER BY created_at DESC
-    LIMIT 10
+    LIMIT 20
 ");
 if ($stmt) {
-    $stmt->bind_param("s", $admin_branch);
+    $stmt->bind_param("s", $admin_branch_id);
     $stmt->execute();
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
@@ -255,40 +317,11 @@ $categoryMeta = [
     <section class="admin-dashboard-section flex-grow-1">
         <div class="container">
             <h2 class="fw-bold mb-4">Admin Dashboard</h2>
-
-            <!-- Top Cards Overview (Tabs) -->
-            <div class="row g-4 mb-4">
-                <div class="col-md-6 col-lg-6 dashboard-tab" data-target="orders-section">
-                    <div class="dashboard-card">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <h5>Orders</h5>
-                                <p class="mb-0">Track and manage orders</p>
-                                <span class="badge badge-custom">
-                                    <?php echo $orders_count; ?> Orders
-                                </span>
-                            </div>
-                            <i class="fa-solid fa-receipt fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 dashboard-tab" data-target="menu-section">
-                    <div class="dashboard-card">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <h5>Menu</h5>
-                                <p class="mb-0">Edit menu items & availability</p>
-                            </div>
-                            <i class="fa-solid fa-bowl-food fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
             <!-- Dashboard Tab Container -->
             <div class="dashboard-tabs-container container py-4">
                 <div class="dashboard-tabs">
-            
+
                     <!-- Orders Section -->
                     <div class="dashboard-section active-section" id="orders-section">
                         <div class="dashboard-section-container p-4 rounded shadow-sm">
@@ -298,30 +331,38 @@ $categoryMeta = [
                                     View, track, and manage all customer orders for your branch.
                                 </p>
                             </div>
-                    
+
                             <div class="dashboard-section-content row g-4">
-                                <!-- Left Column: Orders list + Customer Details -->
+                                <!-- Left Column: Recent Orders + status control -->
                                 <div class="cust-details col-md-4">
                                     <h5>Recent Orders</h5>
 
                                     <?php if ($orders_count > 0): ?>
                                         <ul class="list-group mb-3 small">
                                             <?php foreach ($orders as $o):
-                                                $is_active = ($selected_order && $o['order_id'] == $selected_order['order_id']);
+                                                $is_active   = ($selected_order && $o['order_id'] == $selected_order['order_id']);
+                                                $badge_class = $STATUS_BADGE_CLASS[$o['status']] ?? 'bg-secondary';
+                                                $badge_label = $STATUS_LABELS[$o['status']] ?? ucfirst($o['status']);
                                             ?>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center
-                                                    <?php echo $is_active ? 'active' : ''; ?>">
+                                                <li class="list-group-item bg-white d-flex justify-content-between align-items-center <?php echo $is_active ? 'active' : ''; ?> recent-order-item">
                                                     <a href="admin-dash.php?order_id=<?php echo (int)$o['order_id']; ?>"
-                                                       class="<?php echo $is_active ? 'text-white' : ''; ?>"
+                                                       class="<?php echo $is_active ? 'text-black' : ''; ?>"
                                                        style="text-decoration:none;">
-                                                        #<?php echo (int)$o['order_id']; ?> -
-                                                        <?php echo htmlspecialchars($o['name']); ?>
+                                                        <div class="d-flex flex-column">
+                                                            <span>
+                                                                <?php echo htmlspecialchars($o['order_code']); ?> –
+                                                                <?php echo htmlspecialchars($o['name']); ?>
+                                                            </span>
+                                                            <small class="<?php echo $is_active ? 'text-black' : 'text-muted'; ?>">
+                                                                <?php
+                                                                $dt = $o['date'] ?? '';
+                                                                echo $dt ? date('m-d H:i', strtotime($dt)) : '';
+                                                                ?>
+                                                            </small>
+                                                        </div>
                                                     </a>
-                                                    <span class="badge bg-secondary">
-                                                        <?php
-                                                        $dt = $o['date'] ?? '';
-                                                        echo $dt ? date('m-d H:i', strtotime($dt)) : '';
-                                                        ?>
+                                                    <span class="badge <?php echo $badge_class; ?>">
+                                                        <?php echo htmlspecialchars($badge_label); ?>
                                                     </span>
                                                 </li>
                                             <?php endforeach; ?>
@@ -330,49 +371,183 @@ $categoryMeta = [
                                         <p class="text-muted">No orders yet for this branch.</p>
                                     <?php endif; ?>
 
-                                    <h5>Customer Details</h5>
-
                                     <?php if ($selected_order): ?>
-                                        <ul class="customer-details list-unstyled p-2 rounded shadow-sm">
-                                            <li><strong>Order ID:</strong> #<?php echo (int)$selected_order['order_id']; ?></li>
-                                            <li><strong>Customer:</strong> <?php echo htmlspecialchars($selected_order['name']); ?></li>
-                                            <li><strong>Contact:</strong> <?php echo htmlspecialchars($selected_order['contact_number']); ?></li>
-                                            <li><strong>Branch:</strong> <?php echo htmlspecialchars($selected_order['branch']); ?></li>
-                                            <li><strong>Date:</strong>
-                                                <?php
-                                                $dt = $selected_order['date'] ?? '';
-                                                echo $dt ? date('Y-m-d H:i', strtotime($dt)) : 'N/A';
-                                                ?>
-                                            </li>
-                                        </ul>
-                                    <?php else: ?>
-                                        <p class="text-muted">Select an order from the list to view details.</p>
+                                        <?php
+                                        $sel_status      = $selected_order['status'] ?? 'pending';
+                                        $sel_badge_class = $STATUS_BADGE_CLASS[$sel_status] ?? 'bg-secondary';
+                                        $sel_badge_label = $STATUS_LABELS[$sel_status] ?? ucfirst($sel_status);
+                                        ?>
+                                        <h5 class="mt-4">Status Control</h5>
+                                        <form method="post" class="mt-2">
+                                            <input type="hidden" name="order_action" value="update_status">
+                                            <input type="hidden" name="order_id" value="<?php echo (int)$selected_order['order_id']; ?>">
+
+                                            <div class="mb-2 small">
+                                                <div class="mb-1 text-dark">
+                                                    <strong>Current status:</strong>
+                                                    <span class="badge <?php echo $sel_badge_class; ?>">
+                                                        <?php echo htmlspecialchars($sel_badge_label); ?>
+                                                    </span>
+                                                </div>
+                                                <label for="order-status" class="form-label small mb-1 text-dark">Change status</label>
+                                                <select name="new_status" id="order-status" class="form-select form-select-sm">
+                                                    <?php
+                                                    $current_status = $selected_order['status'] ?? 'pending';
+                                                    foreach ($STATUS_LABELS as $value => $label):
+                                                    ?>
+                                                        <option value="<?php echo $value; ?>"
+                                                            <?php echo ($current_status === $value) ? 'selected' : ''; ?>>
+                                                            <?php echo $label; ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-sm btn-primary w-100">
+                                                Save Status
+                                            </button>
+                                        </form>
                                     <?php endif; ?>
                                 </div>
-                    
-                                <!-- Right Column: Order Summary / Receipt -->
+
+                                <!-- Right Column: Order Summary styled like order-confirmed -->
                                 <div class="receipt col-md-8">
                                     <h5>Order Summary</h5>
-                                    <div class="receipt-card p-3 rounded shadow-sm">
-                                        <?php if ($selected_order): ?>
-                                            <p><strong>Items:</strong></p>
-                                            <p class="mb-3">
-                                                <?php
-                                                echo $selected_order_food_summary
-                                                    ? nl2br(htmlspecialchars($selected_order_food_summary))
-                                                    : '<span class="text-muted">No items found for this order.</span>';
-                                                ?>
-                                            </p>
 
-                                            <!-- Action Buttons (to be wired later) -->
-                                            <div class="text-end mt-2">
-                                                <button class="btn btn-sm btn-primary">View</button>
-                                                <button class="btn btn-sm btn-danger">Cancel</button>
+                                    <?php if ($selected_order): ?>
+                                        <div class="card border-0 shadow-sm">
+                                            <div class="card-body p-4">
+
+                                                <!-- Header row -->
+                                                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3">
+                                                    <div class="mb-2 mb-md-0">
+                                                        <h6 class="mb-1 text-dark">
+                                                            Order: <span class="font-monospace">
+                                                                <?php echo htmlspecialchars($selected_order['order_code']); ?>
+                                                            </span>
+                                                        </h6>
+                                                        <p class="small mb-0 text-dark">
+                                                            Customer: <?php echo htmlspecialchars($selected_order['name']); ?><br>
+                                                            Contact: <?php echo htmlspecialchars($selected_order['contact_number']); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="text-md-end small">
+                                                        <?php
+                                                        $sel_status      = $selected_order['status'] ?? 'pending';
+                                                        $sel_badge_class = $STATUS_BADGE_CLASS[$sel_status] ?? 'bg-secondary';
+                                                        $sel_badge_label = $STATUS_LABELS[$sel_status] ?? ucfirst($sel_status);
+                                                        ?>
+                                                        <p class="mb-1 text-dark">Status</p>
+                                                        <span class="badge <?php echo $sel_badge_class; ?>">
+                                                            <?php echo htmlspecialchars($sel_badge_label); ?>
+                                                        </span>
+                                                        <p class="mb-0 mt-2 text-dark">
+                                                            Placed:
+                                                            <?php
+                                                            $dt = $selected_order['date'] ?? '';
+                                                            echo $dt ? date('Y-m-d H:i', strtotime($dt)) : 'N/A';
+                                                            ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+
+                                                <!-- Customer + delivery row -->
+                                                <div class="row g-4 small mb-3">
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-uppercase text-muted mb-2">
+                                                            <i class="fa-solid fa-user me-1"></i> Customer
+                                                        </h6>
+                                                        <p class="mb-1">
+                                                            <strong><?php echo htmlspecialchars($selected_order['name']); ?></strong>
+                                                        </p>
+                                                        <p class="mb-1">
+                                                            <i class="fa-solid fa-phone me-1"></i>
+                                                            <?php echo htmlspecialchars($selected_order['contact_number']); ?>
+                                                        </p>
+                                                        <p class="mb-0">
+                                                            <strong>Branch:</strong>
+                                                            <?php echo htmlspecialchars($selected_order['branch']); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-uppercase text-muted mb-2">
+                                                            <i class="fa-solid fa-location-dot me-1"></i> Address
+                                                        </h6>
+                                                        <p class="mb-1 text-dark">
+                                                            <?php echo nl2br(htmlspecialchars($selected_order['address'] ?: 'Not specified')); ?>
+                                                        </p>
+                                                        <?php
+                                                        $type_raw = $selected_order['order_type']     ?? '';
+                                                        $pay_raw  = $selected_order['payment_method'] ?? '';
+
+                                                        $type_label = $type_raw !== '' ? $type_raw : 'Unknown';
+                                                        if ($pay_raw === 'paymongo') {
+                                                            $pay_label = 'Online (PayMongo)';
+                                                        } elseif ($pay_raw === 'cod') {
+                                                            $pay_label = 'Cash on Delivery';
+                                                        } else {
+                                                            $pay_label = $pay_raw !== '' ? $pay_raw : 'Unknown';
+                                                        }
+                                                        ?>
+                                                        <p class="mb-0 text-dark">
+                                                            <strong>Type:</strong> <?php echo htmlspecialchars($type_label); ?>
+                                                            &middot;
+                                                            <strong>Payment:</strong> <?php echo htmlspecialchars($pay_label); ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <hr>
+
+                                                <!-- Items + totals row -->
+                                                <div class="row g-4 small">
+                                                    <div class="col-md-7">
+                                                        <h6 class="text-uppercase text-muted mb-2">
+                                                            <i class="fa-solid fa-list-ul me-1"></i> Items
+                                                        </h6>
+                                                        <p class="mb-0 text-dark">
+                                                            <?php
+                                                            echo $selected_order_food_summary
+                                                                ? nl2br(htmlspecialchars($selected_order_food_summary))
+                                                                : '<span class="text-muted">No items found for this order.</span>';
+                                                            ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <h6 class="text-uppercase text-muted mb-2">
+                                                            <i class="fa-solid fa-receipt me-1"></i> Totals
+                                                        </h6>
+                                                        <?php
+                                                        $sub = isset($selected_order['subtotal'])     ? (float)$selected_order['subtotal']     : 0;
+                                                        $del = isset($selected_order['delivery_fee']) ? (float)$selected_order['delivery_fee'] : 0;
+                                                        $tot = isset($selected_order['total_amount']) ? (float)$selected_order['total_amount'] : 0;
+                                                        ?>
+                                                        <div class="border rounded-3 p-3 bg-light">
+                                                            <div class="d-flex justify-content-between mb-1 text-dark">
+                                                                <span>Subtotal</span>
+                                                                <span>₱<?php echo number_format($sub, 2); ?></span>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between mb-1 text-dark">
+                                                                <span>Delivery fee</span>
+                                                                <span>₱<?php echo number_format($del, 2); ?></span>
+                                                            </div>
+                                                            <hr class="my-2">
+                                                            <div class="d-flex justify-content-between fw-bold text-dark">
+                                                                <span>Total</span>
+                                                                <span class="text-success">
+                                                                    ₱<?php echo number_format($tot, 2); ?>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                        <?php else: ?>
-                                            <p class="text-muted mb-0">No order selected.</p>
-                                        <?php endif; ?>
-                                    </div>
+                                        </div>
+                                    <?php else: ?>
+                                        <p class="text-muted mb-0">No order selected.</p>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -395,7 +570,7 @@ $categoryMeta = [
 
                             foreach ($order_slugs as $slug):
                                 if (!isset($menu[$slug])) continue;
-                                $cat = $menu[$slug];
+                                $cat  = $menu[$slug];
                                 $meta = $categoryMeta[$slug] ?? ['icon' => '', 'title' => $cat['name']];
                             ?>
                                 <h5 class="menu-category-title mb-3">
@@ -412,8 +587,8 @@ $categoryMeta = [
                                                 ?>
                                                 <?php if ($showImage): ?>
                                                     <img src="<?php echo htmlspecialchars($item['image_path']); ?>"
-                                                        class="menu-mgmt-img"
-                                                        alt="<?php echo htmlspecialchars($item['name']); ?>">
+                                                         class="menu-mgmt-img"
+                                                         alt="<?php echo htmlspecialchars($item['name']); ?>">
                                                 <?php endif; ?>
 
                                                 <div class="card-body d-flex flex-column">
