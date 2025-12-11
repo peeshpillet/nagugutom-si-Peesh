@@ -562,14 +562,6 @@ nav {
     /* adjusts for header + footer */
 }
 
-#cart-toggle {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    transform: translate(50%, -50%);
-    z-index: 1060;
-}
-
 .page-header {
     background-image: url('img/pgheader.jpg');
     background-size: cover;
@@ -597,6 +589,14 @@ nav {
     background-color: #8E1616;
     color: #EEEEEE;
 }
+
+.story-reels-box {
+    background-color: #1D1D1D;          /* deep black/charcoal */
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
 
 .about-page h2 {
     font-family: 'Roboto Slab', serif;

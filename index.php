@@ -79,7 +79,10 @@ $branches = [
                 <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
                 <li class="nav-item"><a class="nav-link" href="track-order.php">Track Order</a></li>
                 <li class="nav-item ms-3">
-                    <button class="btn btn-warning"><i class="fa-solid fa-bag-shopping me-1"></i> Order Now</button>
+                    <a href="menu.php" class="btn btn-warning">
+                        <i class="fa-solid fa-bag-shopping me-1"></i>
+                        Order Now
+                    </a>
                 </li>
             </ul>
         </div>

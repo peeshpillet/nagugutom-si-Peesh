@@ -105,29 +105,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="#">
                 <img src="img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle">
                 Ramen Naijiro
             </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="track-order.php">Track Order</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="contact-us.php">Contact Us</a></li>
-                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a href="menu.php" class="btn btn-warning">
-                            <i class="fa-solid fa-bag-shopping me-1"></i> Order Now
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="track-order.php">Track Order</a></li>
+                <li class="nav-item ms-3">
+                    <a href="menu.php" class="btn btn-warning">
+                        <i class="fa-solid fa-bag-shopping me-1"></i>
+                        Order Now
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 

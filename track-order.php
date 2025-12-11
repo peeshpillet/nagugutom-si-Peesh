@@ -165,7 +165,7 @@ if ($initial_code !== '') {
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="font-family: 'Roboto Slab', serif;">
+<body class="d-flex flex-column min-vh-100">
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
@@ -181,7 +181,8 @@ if ($initial_code !== '') {
                 <li class="nav-item"><a class="nav-link active" href="track-order.php">Track Order</a></li>
                 <li class="nav-item ms-3">
                     <a href="menu.php" class="btn btn-warning">
-                        <i class="fa-solid fa-bag-shopping me-1"></i> Order Now
+                        <i class="fa-solid fa-bag-shopping me-1"></i>
+                        Order Now
                     </a>
                 </li>
             </ul>

@@ -22,9 +22,9 @@
 <body class="d-flex flex-column min-vh-100">
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="#">
                 <img src="img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle">
                 Ramen Naijiro
             </a>
@@ -34,35 +34,105 @@
                 <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
                 <li class="nav-item"><a class="nav-link" href="track-order.php">Track Order</a></li>
                 <li class="nav-item ms-3">
-                    <button class="btn btn-warning"><i class="fa-solid fa-bag-shopping me-1"></i> Order Now</button>
+                    <a href="menu.php" class="btn btn-warning">
+                        <i class="fa-solid fa-bag-shopping me-1"></i>
+                        Order Now
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- OUR STORY SECTION -->
-    <section class="about-page py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <h2>Our Story</h2>
-                    <p>
-                        Ramen Naijiro started with a simple passion: to bring authentic, flavorful ramen to our
-                        community. Each bowl is crafted with care, from the savory broth to the perfectly cooked
-                        noodles, combining tradition, quality ingredients, and a touch of love. Our goal is to make
-                        every visit a warm and memorable experience.
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="ratio ratio-16x9 story-video">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Ramen Naijiro Story Video"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
+<!-- OUR STORY SECTION -->
+<section class="about-page py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            
+            <!-- LEFT: STORY TEXT -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2>Our Story</h2>
+                <p>
+                    Ramen Naijiro started with a simple passion: to bring authentic, flavorful ramen to our
+                    community. Each bowl is crafted with care, from the savory broth to the perfectly cooked
+                    noodles, combining tradition, quality ingredients, and a touch of love. Our goal is to make
+                    every visit a warm and memorable experience.
+                </p>
+            </div>
+
+            <!-- RIGHT: FACEBOOK REELS CAROUSEL -->
+            <div class="col-lg-6">
+                <div class="story-reels-box">
+                    <div id="storyReelsCarousel" class="carousel slide text-center" data-bs-ride="carousel">
+                        
+                        <!-- Carousel Inner -->
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                                <div class="reel-wrapper mx-auto">
+                                    <iframe
+                                        src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1248913082653500/&show_text=0&width=400"
+                                        class="reel-iframe"
+                                        frameborder="0"
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="reel-wrapper mx-auto">
+                                    <iframe
+                                        src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/769176214890505/&show_text=0&width=400"
+                                        class="reel-iframe"
+                                        frameborder="0"
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="reel-wrapper mx-auto">
+                                    <iframe
+                                        src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1670237890118162/&show_text=0&width=400"
+                                        class="reel-iframe"
+                                        frameborder="0"
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Controls -->
+                        <button class="carousel-control-prev custom-carousel-btn" type="button"
+                                data-bs-target="#storyReelsCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next custom-carousel-btn" type="button"
+                                data-bs-target="#storyReelsCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+
+                        <!-- Indicators -->
+                        <div class="carousel-indicators mt-3 d-flex justify-content-center">
+                            <button type="button" data-bs-target="#storyReelsCarousel" data-bs-slide-to="0"
+                                    class="active mx-1"></button>
+                            <button type="button" data-bs-target="#storyReelsCarousel" data-bs-slide-to="1"
+                                    class="mx-1"></button>
+                            <button type="button" data-bs-target="#storyReelsCarousel" data-bs-slide-to="2"
+                                    class="mx-1"></button>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
     
     <!-- WHY CHOOSE US SECTION -->
     <section class="why-choose-us py-5">
@@ -87,78 +157,7 @@
             </div>
         </div>
     </section>
-    
-    <!-- RAMEN REELS / CAROUSEL SECTION -->
-    <section class="ramen-reels py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Our Latest Ramen Reels</h2>
-    
-            <div id="ramenReelsCarousel" class="carousel slide text-center" data-bs-ride="carousel">
-    
-                <!-- Carousel Inner -->
-                <div class="carousel-inner">
-    
-                    <div class="carousel-item active">
-                        <div class="reel-wrapper mx-auto">
-                            <iframe
-                                src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1248913082653500/&show_text=0&width=400"
-                                class="reel-iframe" frameborder="0"
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-    
-                    <div class="carousel-item">
-                        <div class="reel-wrapper mx-auto">
-                            <iframe
-                                src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/769176214890505/&show_text=0&width=400"
-                                class="reel-iframe" frameborder="0"
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-    
-                    <div class="carousel-item">
-                        <div class="reel-wrapper mx-auto">
-                            <iframe
-                                src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1670237890118162/&show_text=0&width=400"
-                                class="reel-iframe" frameborder="0"
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-    
-                </div>
-    
-                <!-- Circular Prev/Next Buttons (MUST be OUTSIDE .carousel-inner) -->
-                <button class="carousel-control-prev custom-carousel-btn" type="button" data-bs-target="#ramenReelsCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-    
-                <button class="carousel-control-next custom-carousel-btn" type="button" data-bs-target="#ramenReelsCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
-    
-                <!-- Indicators -->
-                <div class="carousel-indicators mt-3 d-flex justify-content-center">
-                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="0"
-                        class="active mx-1"></button>
-                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="1" class="mx-1"></button>
-                    <button type="button" data-bs-target="#ramenReelsCarousel" data-bs-slide-to="2" class="mx-1"></button>
-                </div>
-    
-            </div>
-    
-        </div>
-    </section>
-    
-    
-    
+
     <!-- FOOTER -->
     <footer class="bg-dark text-white py-4 mt-auto">
         <div class="container text-center">
