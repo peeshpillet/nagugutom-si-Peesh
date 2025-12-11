@@ -61,8 +61,7 @@ $_SESSION['pending_order'] = [
 // Convert pesos to centavos (integer)
 $amount_centavos = (int) round($total_amount * 100);
 
-$success_url = 'http://localhost/nagugutom-si-Peesh/order-confirmed.php?via=paymongo';
-$cancel_url  = 'http://localhost/nagugutom-si-Peesh/order-confirmed.php?paymongo_cancel=1';
+$success_url = 'http://www.ramennaijiro.online/order-confirmed.php?via=paymongo';
 
 // Basic "billing" info just to be nice to PayMongo
 $billing = [

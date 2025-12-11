@@ -7,6 +7,7 @@ $paymongo_cancelled = isset($_GET['paymongo_cancel']);
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <meta charset="UTF-8">
     <title>Ramen Naijiro | Checkout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -214,7 +215,7 @@ $paymongo_cancelled = isset($_GET['paymongo_cancel']);
 
             <div id="modalCaptchaBox" class="w-100 mb-3">
                 <div class="g-recaptcha"
-                    data-sitekey="6LeG9RcsAAAAAGt5EdHWA29Q-sMkMRuxB1ad-e9O"
+                    data-sitekey="6LftkSgsAAAAAP1Evif3jmner3NMaD5kQvSDoD3g"
                     id="captchaContainer"></div>
             </div>
 

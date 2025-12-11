@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <meta charset="UTF-8">
     <title>Ramen Naijiro | Contact Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -245,11 +246,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="p-4 rounded shadow-sm mb-4 bg-light">
                         <h5 class="mb-3"><i class="fa-solid fa-phone me-2"></i>Contact Numbers</h5>
-                        <p class="mb-1">General Trias: <strong>+63 9xx xxx xxxx</strong></p>
-                        <p class="mb-1">Dasmariñas: <strong>+63 9xx xxx xxxx</strong></p>
-                        <p class="mb-1">Odasiba: <strong>+63 9xx xxx xxxx</strong></p>
-                        <p class="mb-1">Marikina: <strong>+63 9xx xxx xxxx</strong></p>
-                        <p class="mb-1">Cainta: <strong>+63 9xx xxx xxxx</strong></p>
+                        <p class="mb-1">General Trias: <strong>+63 928 543 6172</strong></p>
+                        <p class="mb-1">Dasmariñas: <strong>+63 917 665 4376</strong></p>
+                        <p class="mb-1">Odasiba: <strong>+63 917 718 8911</strong></p>
+                        <p class="mb-1">Marikina: <strong>+63 939 241 7461</strong></p>
+                        <p class="mb-1">Cainta: <strong>+63 995 412 6401</strong></p>
                     </div>
 
                     <div class="p-4 rounded shadow-sm mb-4 bg-light">
