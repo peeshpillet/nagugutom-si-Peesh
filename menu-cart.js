@@ -1,13 +1,13 @@
 // Elements
 const cartToggle = document.getElementById('cart-toggle');
-const sideCart = document.getElementById('side-cart');
-const closeCart = document.getElementById('close-cart');
-const cartItems = document.getElementById('cart-items');
-const cartTotal = document.getElementById('cart-total');
+const sideCart   = document.getElementById('side-cart');
+const closeCart  = document.getElementById('close-cart');
+const cartItems  = document.getElementById('cart-items');
+const cartTotal  = document.getElementById('cart-total');
 
 // Open/close side cart
 cartToggle?.addEventListener('click', () => sideCart.classList.toggle('open'));
-closeCart.addEventListener('click', () => sideCart.classList.remove('open'));
+closeCart?.addEventListener('click', () => sideCart.classList.remove('open'));
 
 // Unified function to add item to cart
 function setupAddToOrderButtons(sectionSelector, hasExtras = false) {
@@ -15,9 +15,9 @@ function setupAddToOrderButtons(sectionSelector, hasExtras = false) {
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const name = btn.getAttribute('data-name');
-            const sizesData = btn.getAttribute('data-sizes');
-            const sizeMap = Object.fromEntries(
+            const name      = btn.getAttribute('data-name');
+            const sizesData = btn.getAttribute('data-sizes') || '';
+            const sizeMap   = Object.fromEntries(
                 sizesData.split(',').map(s => {
                     const [key, val] = s.split(':');
                     return [key, parseInt(val)];
@@ -26,31 +26,55 @@ function setupAddToOrderButtons(sectionSelector, hasExtras = false) {
 
             const defaultSize = Object.keys(sizeMap)[0];
 
-            // Extras dropdown (only for ramen)
+            // ---- EXTRAS (only for ramen) ----
             let extrasSelect;
-            let extrasValue = "None";
+            let extrasMap   = {};
+            let extrasValue = '';
+
             if (hasExtras) {
                 extrasSelect = document.createElement('select');
                 extrasSelect.classList.add('form-select', 'mb-1');
-                ['None (₱0)', 'Extra Egg (+₱20)', 'Extra Noodles (+₱15)', 'Extra Pork (+₱25)'].forEach(extra => {
-                    const option = document.createElement('option');
-                    option.value = extra;
-                    option.textContent = extra;
-                    extrasSelect.appendChild(option);
-                });
-                extrasValue = extrasSelect.value;
+
+                // Always have "None"
+                const noneOpt = document.createElement('option');
+                noneOpt.value = '';
+                noneOpt.textContent = 'None (₱0)';
+                extrasSelect.appendChild(noneOpt);
+
+                const extrasData = btn.getAttribute('data-extras') || '';
+                if (extrasData.trim() !== '') {
+                    // extrasData looks like: "Egg:20,Noodles:15,Pork:25"
+                    extrasMap = Object.fromEntries(
+                        extrasData.split(',').map(pair => {
+                            const [label, val] = pair.split(':');
+                            return [label, parseInt(val)];
+                        })
+                    );
+
+                    Object.keys(extrasMap).forEach(label => {
+                        const option = document.createElement('option');
+                        option.value = label; // e.g. "Egg"
+                        option.textContent = `${label} (+₱${extrasMap[label]})`;
+                        extrasSelect.appendChild(option);
+                    });
+                }
+
+                extrasValue = extrasSelect.value; // '' by default (None)
             }
 
             // Unique key for duplicate check
-            const key = hasExtras ? `${name}__${defaultSize}__${extrasValue}` : `${name}__${defaultSize}`;
+            const baseKey = `${name}__${defaultSize}`;
+            const key     = hasExtras ? `${baseKey}__${extrasValue}` : baseKey;
 
             // Check if item already exists
-            let existingItem = Array.from(cartItems.children).find(li => li.getAttribute('data-key') === key);
+            let existingItem = Array.from(cartItems.children).find(
+                li => li.getAttribute('data-key') === key
+            );
 
             if (existingItem) {
                 const qtySpan = existingItem.querySelector('.item-qty');
                 qtySpan.textContent = parseInt(qtySpan.textContent) + 1;
-                updateItemPrice(existingItem, sizeMap, extrasSelect, hasExtras);
+                updateItemPrice(existingItem);
                 updateCartTotal();
                 sideCart.classList.add('open');
                 return;
@@ -103,53 +127,66 @@ function setupAddToOrderButtons(sectionSelector, hasExtras = false) {
             deleteBtn.classList.add('btn', 'btn-sm', 'btn-danger');
             deleteBtn.textContent = 'Remove';
 
-            // Functions
+            // ------- Functions -------
+
             function calculateItemPrice() {
                 let finalPrice = sizeMap[sizeSelect.value];
-                if (hasExtras && extrasSelect.value.includes("Egg")) finalPrice += 20;
-                if (hasExtras && extrasSelect.value.includes("Noodles")) finalPrice += 15;
-                if (hasExtras && extrasSelect.value.includes("Pork")) finalPrice += 25;
+
+                if (hasExtras && extrasSelect && extrasSelect.value && extrasMap[extrasSelect.value]) {
+                    finalPrice += extrasMap[extrasSelect.value];
+                }
+
                 return finalPrice * parseInt(qtySpan.textContent);
             }
 
-            function updateItemPrice(item, sizeMap, extrasSelect, hasExtras) {
-                priceDiv.textContent = `₱${calculateItemPrice()}`;
-                item.setAttribute('data-price', calculateItemPrice());
+            function updateItemPrice(item) {
+                const lineTotal = calculateItemPrice();
+                priceDiv.textContent = `₱${lineTotal}`;
+                item.setAttribute('data-price', lineTotal);
             }
 
             function updateCartTotal() {
                 let total = 0;
                 cartItems.querySelectorAll('.list-group-item').forEach(item => {
-                    total += parseInt(item.getAttribute('data-price'));
+                    total += parseInt(item.getAttribute('data-price')) || 0;
                 });
                 cartTotal.textContent = total;
             }
 
             // Event listeners
             sizeSelect.addEventListener('change', () => {
-                li.setAttribute('data-key', hasExtras ? `${name}__${sizeSelect.value}__${extrasSelect.value}` : `${name}__${sizeSelect.value}`);
-                updateItemPrice(li, sizeMap, extrasSelect, hasExtras);
+                const newSize = sizeSelect.value;
+                const extraKeyPart = hasExtras && extrasSelect ? extrasSelect.value : '';
+                li.setAttribute(
+                    'data-key',
+                    hasExtras ? `${name}__${newSize}__${extraKeyPart}` : `${name}__${newSize}`
+                );
+                updateItemPrice(li);
                 updateCartTotal();
             });
 
             if (hasExtras) {
                 extrasSelect.addEventListener('change', () => {
-                    li.setAttribute('data-key', `${name}__${sizeSelect.value}__${extrasSelect.value}`);
-                    updateItemPrice(li, sizeMap, extrasSelect, hasExtras);
+                    const extraKeyPart = extrasSelect.value;
+                    li.setAttribute(
+                        'data-key',
+                        `${name}__${sizeSelect.value}__${extraKeyPart}`
+                    );
+                    updateItemPrice(li);
                     updateCartTotal();
                 });
             }
 
             plusBtn.addEventListener('click', () => {
                 qtySpan.textContent = parseInt(qtySpan.textContent) + 1;
-                updateItemPrice(li, sizeMap, extrasSelect, hasExtras);
+                updateItemPrice(li);
                 updateCartTotal();
             });
 
             minusBtn.addEventListener('click', () => {
                 if (parseInt(qtySpan.textContent) > 1) {
                     qtySpan.textContent = parseInt(qtySpan.textContent) - 1;
-                    updateItemPrice(li, sizeMap, extrasSelect, hasExtras);
+                    updateItemPrice(li);
                     updateCartTotal();
                 }
             });
@@ -164,7 +201,7 @@ function setupAddToOrderButtons(sectionSelector, hasExtras = false) {
             if (hasExtras) li.append(extrasSelect);
             li.append(qtyDiv, priceDiv, deleteBtn);
 
-            updateItemPrice(li, sizeMap, extrasSelect, hasExtras);
+            updateItemPrice(li);
             cartItems.appendChild(li);
             updateCartTotal();
 
@@ -189,14 +226,13 @@ function getSelectedRadioValue(name) {
 function buildOrderSnapshot() {
     const items = [];
 
-    // Collect cart items
     cartItems.querySelectorAll('.list-group-item').forEach(li => {
-        const name = li.getAttribute('data-name') || '';
+        const name    = li.getAttribute('data-name') || '';
         const selects = li.querySelectorAll('select');
-        const size = selects[0] ? selects[0].value : null;
-        const extras = selects[1] ? selects[1].value : null;
-        const qtyEl = li.querySelector('.item-qty');
-        const qty = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
+        const size    = selects[0] ? selects[0].value : null;
+        const extras  = selects[1] ? selects[1].value : null;
+        const qtyEl   = li.querySelector('.item-qty');
+        const qty     = qtyEl ? parseInt(qtyEl.textContent) || 1 : 1;
         const lineTotal = parseInt(li.getAttribute('data-price')) || 0;
 
         items.push({
@@ -208,19 +244,15 @@ function buildOrderSnapshot() {
         });
     });
 
-    // Cart total (as shown)
-    const total = parseInt(cartTotal.textContent) || 0;
+    const total         = parseInt(cartTotal.textContent) || 0;
+    const orderType     = getSelectedRadioValue('order-type');
+    const paymentMethod = getSelectedRadioValue('payment-method');
 
-    // Side-cart order type & payment
-    const orderType = getSelectedRadioValue('order-type');         // Pickup / Delivery
-    const paymentMethod = getSelectedRadioValue('payment-method'); // GCash / Cash
-
-    // Coverage bar location + branch (from map.js logic)
-    const branchId = document.getElementById('selected-branch-id')?.value || '';
-    const branchName = document.getElementById('selected-branch-name')?.value || '';
-    const province = document.getElementById('selected-province')?.value || '';
-    const city = document.getElementById('selected-city')?.value || '';
-    const barangay = document.getElementById('selected-barangay')?.value || '';
+    const branchId        = document.getElementById('selected-branch-id')?.value || '';
+    const branchName      = document.getElementById('selected-branch-name')?.value || '';
+    const province        = document.getElementById('selected-province')?.value || '';
+    const city            = document.getElementById('selected-city')?.value || '';
+    const barangay        = document.getElementById('selected-barangay')?.value || '';
     const deliveryAllowed = document.getElementById('delivery-allowed')?.value || '0';
 
     return {
@@ -241,16 +273,14 @@ function buildOrderSnapshot() {
 }
 
 checkoutBtn?.addEventListener('click', () => {
-    // Prevent checkout if cart empty
     const itemsInCart = cartItems.querySelectorAll('.list-group-item').length;
     if (itemsInCart === 0) {
         alert('Your cart is empty. Please add items before checking out.');
         return;
     }
 
-    // For Delivery, make sure a service area + branch was chosen
-    const orderType = getSelectedRadioValue('order-type');
-    const branchId = document.getElementById('selected-branch-id')?.value || '';
+    const orderType       = getSelectedRadioValue('order-type');
+    const branchId        = document.getElementById('selected-branch-id')?.value || '';
     const deliveryAllowed = document.getElementById('delivery-allowed')?.value || '0';
 
     if (orderType === 'Delivery') {
@@ -274,10 +304,5 @@ checkoutBtn?.addEventListener('click', () => {
         return;
     }
 
-    // Go to checkout page
     window.location.href = 'checkout.php';
 });
-
-
-
-

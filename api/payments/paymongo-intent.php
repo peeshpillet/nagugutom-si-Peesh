@@ -13,7 +13,7 @@ if (!defined('PAYMONGO_SECRET_KEY') || !PAYMONGO_SECRET_KEY) {
 }
 
 // Read data from POST (coming from checkout form)
-$customerName  = $_POST['customer_name']  ?? 'Shawarma Depot Customer';
+$customerName  = $_POST['customer_name']  ?? 'Ramen Naijiro Customer';
 $customerEmail = $_POST['customer_email'] ?? null;
 $totalAmount   = $_POST['total_amount']   ?? null;
 
@@ -41,10 +41,10 @@ $payload = [
         'attributes' => [
             'amount'                 => $amountCentavo,
             'currency'               => 'PHP',
-            'description'            => "Shawarma Depot order",
+            'description'            => "Ramen Naijiro order",
             'payment_method_allowed' => ['card', 'gcash', 'paymaya'],
             'payment_method_options' => new stdClass(), // empty object
-            'statement_descriptor'   => 'Shawarma Depot',
+            'statement_descriptor'   => 'Ramen Naijiro',
             'metadata'               => [
                 'customer_name'  => $customerName,
                 'customer_email' => $customerEmail,

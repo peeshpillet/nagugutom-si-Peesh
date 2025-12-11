@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } elseif ($menu_action === 'toggle_size') {
+            // still used for EXTRAS only
             $size_id    = (int) ($_POST['size_id'] ?? 0);
             $new_status = (int) ($_POST['new_status'] ?? 1);
 
@@ -96,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } elseif ($menu_action === 'update_size') {
+            // still used for EXTRAS only
             $size_id    = (int) ($_POST['size_id'] ?? 0);
             $new_price  = (float) ($_POST['new_price'] ?? 0);
             $new_status = (int) ($_POST['new_status'] ?? 1);
@@ -559,8 +561,7 @@ $categoryMeta = [
                             <div class="menu-mgmt-header">
                                 <h4 class="menu-mgmt-title">Menu Management</h4>
                                 <p class="menu-mgmt-desc">
-                                    Toggle availability of menu items and price options.  
-                                    (These rows come from the database now.)
+                                    Toggle availability of menu items. Extras can still be edited per add-on.
                                 </p>
                             </div>
 
@@ -613,41 +614,23 @@ $categoryMeta = [
                                                         <ul class="list-unstyled mb-3 small">
                                                             <?php foreach ($item['sizes'] as $size): ?>
                                                                 <li class="d-flex justify-content-between align-items-center mb-1">
-                                                                    <span>
+                                                                    <span class="me-2">
                                                                         <strong><?php echo htmlspecialchars($size['label']); ?></strong>
-                                                                        ₱<?php echo number_format($size['price'], 2); ?>
-                                                                        <?php if (!$size['available']): ?>
-                                                                            <span class="badge bg-secondary ms-1">off</span>
-                                                                        <?php endif; ?>
                                                                     </span>
 
-                                                                    <div class="d-flex gap-1">
-                                                                        <!-- Hide / Show toggle -->
-                                                                        <form method="post" class="m-0">
-                                                                            <input type="hidden" name="menu_action" value="toggle_size">
-                                                                            <input type="hidden" name="size_id" value="<?php echo (int)$size['size_id']; ?>">
-                                                                            <input type="hidden" name="new_status" value="<?php echo $size['available'] ? 0 : 1; ?>">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-sm btn-outline-secondary">
-                                                                                <?php echo $size['available'] ? 'Hide' : 'Show'; ?>
-                                                                            </button>
-                                                                        </form>
-
-                                                                        <!-- Edit size (opens modal) -->
-                                                                        <button type="button"
-                                                                                class="btn btn-sm btn-outline-primary btn-edit-size"
-                                                                                data-size-id="<?php echo (int)$size['size_id']; ?>"
-                                                                                data-price="<?php echo $size['price']; ?>"
-                                                                                data-status="<?php echo (int)$size['available']; ?>">
-                                                                            Edit
-                                                                        </button>
-                                                                    </div>
+                                                                    <span class="fw-semibold text-dark">
+                                                                        ₱<?php echo number_format($size['price'], 2); ?>
+                                                                        <?php if (!$size['available']): ?>
+                                                                            <span class="badge bg-secondary ms-1">Unavailable</span>
+                                                                        <?php endif; ?>
+                                                                    </span>
                                                                 </li>
                                                             <?php endforeach; ?>
                                                         </ul>
                                                     <?php else: ?>
                                                         <p class="text-muted small mb-3">No prices set for this item.</p>
                                                     <?php endif; ?>
+
 
                                                     <div class="mt-auto card-btns d-flex gap-2">
                                                         <!-- Availability toggle for whole item -->
@@ -690,7 +673,7 @@ $categoryMeta = [
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="admin-tab.js"></script>
 
-    <!-- Edit Size Modal -->
+    <!-- Edit Size Modal (still used for EXTRAS) -->
     <div class="modal fade" id="editSizeModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <form method="post" class="modal-content">

@@ -67,32 +67,23 @@ $branches = [
 <body class="d-flex flex-column min-vh-100">
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.php">
-            <img src="img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle">
-            Ramen Naijiro
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.jpg" alt="Ramen Naijiro Logo" class="logo-circle">
+                Ramen Naijiro
+            </a>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
                 <li class="nav-item"><a class="nav-link" href="track-order.php">Track Order</a></li>
-                <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                    <a href="menu.php" class="btn btn-warning">
-                        <i class="fa-solid fa-bag-shopping me-1"></i> Order Now
-                    </a>
+                <li class="nav-item ms-3">
+                    <button class="btn btn-warning"><i class="fa-solid fa-bag-shopping me-1"></i> Order Now</button>
                 </li>
             </ul>
         </div>
-    </div>
-</nav>
+    </nav>
 
 <!-- HERO SECTION -->
 <section class="hero">

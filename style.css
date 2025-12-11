@@ -22,6 +22,12 @@ body {
 
 }
 
+/* Force ramen/side size text in admin cards to be dark */
+.menu-mgmt-card ul.list-unstyled li {
+    color: #1D1616 !important;
+}
+
+
 /* Override Bootstrap .active list group behavior */
 .recent-order-item.active {
     background-color: #0d6efd !important;   /* or any highlight color */

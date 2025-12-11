@@ -254,7 +254,7 @@ if ($isPaymongoReturn) {
                                     <!-- Tracking number block -->
                                     <div class="text-md-end">
                                         <p class="small text-muted mb-1">Tracking number</p>
-                                        <div class="d-inline-flex align-items-center px-3 py-2 rounded-3 bg-dark text-warning">
+                                        <div class="d-inline-flex align-items-center px-3 py-2 rounded-3 bg-dark text-light">
                                             <i class="fa-solid fa-hashtag me-2"></i>
                                             <span class="font-monospace fw-semibold">
                                                 <?php echo htmlspecialchars($order['tracking_code']); ?>
@@ -472,7 +472,7 @@ if ($isPaymongoReturn) {
 <footer class="bg-dark text-white py-4 mt-auto">
     <div class="container text-center">
         <p>&copy; 2025 Ramen Naijiro. All rights reserved.</p>
-        <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-warning text-decoration-none">
+        <a href="https://www.facebook.com/RamenNaijiroGTC" class="text-decoration-none">
             <i class="fa-brands fa-facebook"></i>
         </a><br>
         <a href="admin/admin-login.php">Admin Login</a>

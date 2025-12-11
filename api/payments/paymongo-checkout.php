@@ -66,7 +66,7 @@ $cancel_url  = 'http://localhost/nagugutom-si-Peesh/order-confirmed.php?paymongo
 
 // Basic "billing" info just to be nice to PayMongo
 $billing = [
-    'name'  => $customer_name ?: 'Shawarma Depot Customer',
+    'name'  => $customer_name ?: 'Ramen Naijiro Customer',
     'email' => $customer_email ?: null,
     'phone' => $customer_phone ?: null,
     'address' => [
@@ -86,7 +86,7 @@ $payload = [
             'billing' => $billing,
             'cancel_url' => $cancel_url,
             'success_url' => $success_url,
-            'description' => 'Shawarma Depot Online Order',
+            'description' => 'Ramen Naijiro Online Order',
             'payment_method_types' => [
                 'card',
                 'gcash',
@@ -95,12 +95,12 @@ $payload = [
                 [
                     'amount'      => $amount_centavos,
                     'quantity'    => 1,
-                    'name'        => 'Shawarma Depot Order',
+                    'name'        => 'Ramen Naijiro Order',
                     'description' => 'Online food order',
                     'currency'    => 'PHP',
                 ],
             ],
-            'merchant'           => 'Shawarma Depot',
+            'merchant'           => 'Ramen Naijiro',
             'reference_number'   => 'SD-' . time(),
             'send_email_receipt' => false,
             'show_description'   => true,

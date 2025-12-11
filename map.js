@@ -60,8 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'Other': {
             'Odasiba City': {
-                'Barangay 1':      { branchId: 'odasiba', delivery: true },
-                'Barangay 2':      { branchId: 'odasiba', delivery: false } // example: pickup-only
+                'South Triangle':      { branchId: 'odasiba', delivery: true },
+                'Pinyahan':      { branchId: 'odasiba', delivery: true},
+                'Laging Handa':      { branchId: 'odasiba', delivery: true},
+                'Krus na Ligas':      { branchId: 'odasiba', delivery: true}
             }
         }
     };
